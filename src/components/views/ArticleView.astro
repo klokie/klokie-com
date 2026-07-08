@@ -2,7 +2,7 @@
 import { render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import SiteLayout from "@/layouts/SiteLayout.astro";
-import { localizeUrl, dateLocale, type Locale } from "@/i18n";
+import { localizeUrl, dateLocale, splitId, type Locale } from "@/i18n";
 import { t } from "@/i18n/ui";
 
 interface Props {
@@ -11,6 +11,7 @@ interface Props {
 }
 const { lang, entry } = Astro.props;
 const tr = t(lang);
+const translated = splitId(entry.id).lang === lang;
 const { data } = entry;
 const { Content } = await render(entry);
 const fmt = new Intl.DateTimeFormat(dateLocale[lang], {
@@ -31,6 +32,7 @@ const articleJsonLd = {
 
 <SiteLayout
   lang={lang}
+  translated={translated}
   title={data.title}
   description={data.description}
   ogType="article"

@@ -2,7 +2,7 @@
 import { render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import SiteLayout from "@/layouts/SiteLayout.astro";
-import { localizeUrl, type Locale } from "@/i18n";
+import { localizeUrl, splitId, type Locale } from "@/i18n";
 import { t } from "@/i18n/ui";
 
 interface Props {
@@ -11,6 +11,7 @@ interface Props {
 }
 const { lang, entry } = Astro.props;
 const tr = t(lang);
+const translated = splitId(entry.id).lang === lang;
 const { data } = entry;
 const { Content } = await render(entry);
 
@@ -34,6 +35,7 @@ const caseJsonLd = {
 
 <SiteLayout
   lang={lang}
+  translated={translated}
   title={data.title}
   description={data.summary}
   ogImage={data.image}

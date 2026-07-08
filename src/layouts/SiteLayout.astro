@@ -16,6 +16,13 @@ interface Props {
   ogType?: string;
   jsonLd?: object | object[];
   lang?: Locale;
+  /**
+   * false = this non-default-locale page renders untranslated (default-locale)
+   * fallback content. Its canonical then points at the default-locale page and
+   * hreflang alternates are omitted (duplicates canonicalize; hreflang is only
+   * for real translations).
+   */
+  translated?: boolean;
 }
 const {
   title,
@@ -24,11 +31,16 @@ const {
   ogType = "website",
   jsonLd,
   lang = defaultLocale,
+  translated = true,
 } = Astro.props;
 const tr = t(lang);
 const fullTitle = title ? `${title} — ${siteConfig.title}` : siteConfig.title;
-const canonical = new URL(Astro.url.pathname, siteConfig.url).href;
 const alternates = localePaths(Astro.url.pathname);
+const isFallback = lang !== defaultLocale && !translated;
+const canonical = new URL(
+  isFallback ? alternates[defaultLocale] : Astro.url.pathname,
+  siteConfig.url,
+).href;
 
 // default site-wide og:image (1200×630) so shares never look empty
 const isDefaultOg = !ogImage;
@@ -89,15 +101,20 @@ const nav = [
       }}
     />
     {
-      Object.entries(alternates).map(([l, path]) => (
-        <link rel="alternate" hreflang={l} href={new URL(path, siteConfig.url).href} />
-      ))
+      !isFallback &&
+        Object.entries(alternates).map(([l, path]) => (
+          <link rel="alternate" hreflang={l} href={new URL(path, siteConfig.url).href} />
+        ))
     }
-    <link
-      rel="alternate"
-      hreflang="x-default"
-      href={new URL(alternates[defaultLocale], siteConfig.url).href}
-    />
+    {
+      !isFallback && (
+        <link
+          rel="alternate"
+          hreflang="x-default"
+          href={new URL(alternates[defaultLocale], siteConfig.url).href}
+        />
+      )
+    }
     <script is:inline>
       // apply saved theme before paint; default is dark (:root)
       if (localStorage.getItem("theme") === "light")

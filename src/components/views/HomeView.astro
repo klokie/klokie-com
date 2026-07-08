@@ -110,23 +110,11 @@ const personJsonLd = {
     background:
       linear-gradient(
         to bottom,
-        color-mix(in srgb, var(--bg) 55%, transparent) 0%,
-        color-mix(in srgb, var(--bg) 78%, transparent) 60%,
+        color-mix(in srgb, var(--bg) 45%, transparent) 0%,
+        color-mix(in srgb, var(--bg) 72%, transparent) 60%,
         var(--bg) 100%
       ),
-      url("/media/hero-bg.jpg") center 35% / cover no-repeat;
-  }
-  @media (min-resolution: 1.5dppx), (min-width: 2000px) {
-    .hero {
-      background-image:
-        linear-gradient(
-          to bottom,
-          color-mix(in srgb, var(--bg) 55%, transparent) 0%,
-          color-mix(in srgb, var(--bg) 78%, transparent) 60%,
-          var(--bg) 100%
-        ),
-        url("/media/hero-bg@2x.jpg");
-    }
+      url("/media/hero-bg.svg") center / cover no-repeat;
   }
   .hero-inner {
     display: flex;
@@ -156,8 +144,8 @@ const personJsonLd = {
     width: 200px;
     height: 200px;
     object-fit: cover;
-    border-radius: var(--radius-card);
-    border: 1px solid var(--border);
+    border-radius: 50%;
+    border: 2px solid color-mix(in srgb, var(--text) 25%, transparent);
     box-shadow: 0 12px 32px color-mix(in srgb, var(--bg) 60%, transparent);
   }
 

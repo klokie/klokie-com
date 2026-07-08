@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 640" preserveAspectRatio="xMidYMid slice">
+  <!-- Vector interpretation of the v3 site's neon-corridor hero photo:
+       soft magenta/orange glow with vertical glitch drips. Crisp at any
+       resolution; the page's CSS gradient overlay handles text legibility. -->
+  <defs>
+    <radialGradient id="glowA" cx="38%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#e0356b" stop-opacity="0.85"/>
+      <stop offset="45%" stop-color="#b3225a" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="72%" cy="18%" r="45%">
+      <stop offset="0%" stop-color="#fd5b17" stop-opacity="0.55"/>
+      <stop offset="60%" stop-color="#c23a2a" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowC" cx="12%" cy="70%" r="50%">
+      <stop offset="0%" stop-color="#2a6ad1" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowD" cx="90%" cy="75%" r="45%">
+      <stop offset="0%" stop-color="#724f83" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="drip" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff8cae" stop-opacity="0"/>
+      <stop offset="25%" stop-color="#ff8cae" stop-opacity="0.55"/>
+      <stop offset="70%" stop-color="#e0356b" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#e0356b" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="dripFaint" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f5f5f0" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#f5f5f0" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#f5f5f0" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <rect width="1440" height="640" fill="#0a0a0f"/>
+  <rect width="1440" height="640" fill="url(#glowC)"/>
+  <rect width="1440" height="640" fill="url(#glowD)"/>
+  <rect width="1440" height="640" fill="url(#glowA)"/>
+  <rect width="1440" height="640" fill="url(#glowB)"/>
+
+  <!-- glitch drips -->
+  <g filter="url(#soft)">
+    <rect x="315"  y="0" width="7"  height="450" fill="url(#drip)"/>
+    <rect x="388"  y="0" width="3"  height="340" fill="url(#dripFaint)"/>
+    <rect x="470"  y="0" width="12" height="520" fill="url(#drip)"/>
+    <rect x="545"  y="0" width="4"  height="280" fill="url(#dripFaint)"/>
+    <rect x="620"  y="0" width="8"  height="400" fill="url(#drip)"/>
+    <rect x="705"  y="0" width="3"  height="230" fill="url(#dripFaint)"/>
+    <rect x="800"  y="0" width="10" height="470" fill="url(#drip)"/>
+    <rect x="893"  y="0" width="5"  height="310" fill="url(#drip)"/>
+    <rect x="985"  y="0" width="3"  height="240" fill="url(#dripFaint)"/>
+    <rect x="1080" y="0" width="8"  height="380" fill="url(#drip)"/>
+    <rect x="1170" y="0" width="4"  height="260" fill="url(#dripFaint)"/>
+  </g>
+</svg>
