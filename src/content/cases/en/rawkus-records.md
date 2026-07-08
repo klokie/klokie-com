@@ -6,7 +6,7 @@ location: "New York"
 categories: [music, streaming-media]
 role: "Senior Full-stack Engineer"
 summary: "Rawkus Records was a prominent independent hip-hop record label in the late 1990s and early 2000s, known for launching the careers of influential artists such as Mos Def, Talib Kweli, and Pharoahe Monch."
-image: "/media/rawkus-records.jpg"
+image: "https://media.klokie.com/cases/rawkus-records.jpg"
 imageFit: "cover"
 imageAlt: "Rawkus Records"
 featured: true

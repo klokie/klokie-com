@@ -5,7 +5,7 @@ location: "Stockholm"
 categories: [health, medtech]
 role: "Senior Full-stack Engineer"
 summary: "Werlabs helps people live healthier lives by providing tools to monitor and improve their health over time. Their mission is to enhance public health by focusing on prevention rather than treatment. They offer regular health checkups, personalized medical insights from doctors, and detailed, visualized test results in a digital journal."
-image: "/media/werlabs.png"
+image: "https://media.klokie.com/cases/werlabs.png"
 imageFit: "contain"
 imageAlt: "Werlabs"
 featured: true
