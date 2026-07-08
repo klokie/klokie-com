@@ -1,0 +1,27 @@
+# Old klokie.com (Notion-era) URLs → new structure. 301s, path-preserving
+# where a direct equivalent exists; everything unknown 404s honestly.
+
+# pages
+/about-me            /about/     301
+/cv-daniel-grossfeld /cv/        301
+/published-articles  /articles/  301
+
+# old article slugs lived at the root; same slugs now under /articles/
+/howler-monkey-gods-now-on-bandcamp     /articles/howler-monkey-gods-now-on-bandcamp/     301
+/music-theory-learning-resources        /articles/music-theory-learning-resources/        301
+/ja-ma-han-leva                         /articles/ja-ma-han-leva/                          301
+/vpn-price-differences-explained        /articles/vpn-price-differences-explained/        301
+/find-hidden-flight-deals-with-gpt5     /articles/find-hidden-flight-deals-with-gpt5/     301
+/7-ai-prompts-for-finding-cheap-flights /articles/7-ai-prompts-for-finding-cheap-flights/ 301
+/glossary-of-sustainable-logistics      /articles/glossary-of-sustainable-logistics/      301
+/transportation-management-systems      /articles/transportation-management-systems/      301
+/nonviolent-communication-nvc           /articles/nonviolent-communication-nvc/           301
+/bob-dylan-quote                        /articles/bob-dylan-quote/                        301
+/finance-quote                          /articles/finance-quote/                          301
+/guidelines-when-creating-notion-cover-images /articles/notion-cover-image-guidelines/    301
+
+# known-shared Notion page ids
+/e84239bffb1743c194d4615537673cce  /       301
+/67359b5b28814aa9aceed7bd36a37d83  /work/  301
+/cfb2b18f0f3a45bc9c051695caf664ae  /contact/ 301
+/02c7651f48f64662838bd9d4252109fb  /contact/ 301

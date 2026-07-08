@@ -19,9 +19,27 @@ const years = data.date
     ? `${data.date.getFullYear()}–${data.endDate.getFullYear()}`
     : String(data.date.getFullYear())
   : "";
+
+const caseJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: data.title,
+  description: data.summary,
+  ...(data.date && { dateCreated: data.date.toISOString().slice(0, 10) }),
+  ...(data.image && { image: data.image }),
+  ...(data.url && { url: data.url }),
+  author: { "@type": "Person", name: "Daniel Grossfeld", alternateName: "Klokie" },
+};
 ---
 
-<SiteLayout lang={lang} title={data.title} description={data.summary} ogImage={data.image}>
+<SiteLayout
+  lang={lang}
+  title={data.title}
+  description={data.summary}
+  ogImage={data.image}
+  ogType="article"
+  jsonLd={caseJsonLd}
+>
   <article class="container">
     <a class="back mono" href={localizeUrl("/work/", lang)}>{tr("work.back")}</a>
     <div class="kicker mono">

@@ -18,9 +18,24 @@ const fmt = new Intl.DateTimeFormat(dateLocale[lang], {
   month: "long",
   day: "numeric",
 });
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: data.title,
+  ...(data.description && { description: data.description }),
+  datePublished: data.date.toISOString().slice(0, 10),
+  author: { "@type": "Person", name: "Daniel Grossfeld", alternateName: "Klokie" },
+};
 ---
 
-<SiteLayout lang={lang} title={data.title} description={data.description}>
+<SiteLayout
+  lang={lang}
+  title={data.title}
+  description={data.description}
+  ogType="article"
+  jsonLd={articleJsonLd}
+>
   <article class="container">
     <a class="back mono" href={localizeUrl("/articles/", lang)}>{tr("articles.back")}</a>
     <div class="kicker mono">

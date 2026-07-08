@@ -28,6 +28,10 @@ jobs:
       - name: Build
         env:
           PUBLIC_SITE_URL: ${{ vars.PUBLIC_SITE_URL || 'https://www.klokie.com' }}
+          PUBLIC_POSTHOG_KEY: ${{ vars.PUBLIC_POSTHOG_KEY }}
+          PUBLIC_POSTHOG_HOST: ${{ vars.PUBLIC_POSTHOG_HOST }}
+          PUBLIC_SENTRY_DSN: ${{ vars.PUBLIC_SENTRY_DSN }}
+          PUBLIC_SENTRY_ENV: ${{ vars.PUBLIC_SENTRY_ENV }}
         run: pnpm build
 
       - name: Deploy to Cloudflare Workers

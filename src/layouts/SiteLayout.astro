@@ -2,6 +2,7 @@
 import BaseLayout from "@klokie/theme/layouts/BaseLayout.astro";
 import SiteHeader from "@klokie/theme/components/SiteHeader.astro";
 import SiteFooter from "@klokie/theme/components/SiteFooter.astro";
+import Analytics from "@klokie/theme/components/Analytics.astro";
 import "@klokie/theme/tokens/klokie.css";
 import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
 import { siteConfig } from "@/site/config";
@@ -12,13 +13,35 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  ogType?: string;
+  jsonLd?: object | object[];
   lang?: Locale;
 }
-const { title, description, ogImage, lang = defaultLocale } = Astro.props;
+const {
+  title,
+  description,
+  ogImage,
+  ogType = "website",
+  jsonLd,
+  lang = defaultLocale,
+} = Astro.props;
 const tr = t(lang);
 const fullTitle = title ? `${title} — ${siteConfig.title}` : siteConfig.title;
 const canonical = new URL(Astro.url.pathname, siteConfig.url).href;
 const alternates = localePaths(Astro.url.pathname);
+
+// default site-wide og:image (1200×630) so shares never look empty
+const isDefaultOg = !ogImage;
+const ogImageAbs = new URL(ogImage ?? "/og.png", siteConfig.url).href;
+const ogLocale = lang === "sv" ? "sv_SE" : "en_US";
+
+// serialize JSON-LD so content can't break out of the <script> tag
+const jsonLdSafe = jsonLd
+  ? JSON.stringify(jsonLd)
+      .replace(/</g, "\\u003c")
+      .replace(/>/g, "\\u003e")
+      .replace(/&/g, "\\u0026")
+  : null;
 
 const nav = [
   { label: tr("nav.work"), href: localizeUrl("/work", lang) },
@@ -32,12 +55,39 @@ const nav = [
   title={fullTitle}
   description={description ?? tr("site.description")}
   preset={siteConfig.preset}
-  ogImage={ogImage}
+  ogImage={ogImageAbs}
   lang={lang}
 >
   <Fragment slot="head">
     <link rel="canonical" href={canonical} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={siteConfig.title} />
+    <meta property="og:locale" content={ogLocale} />
+    {
+      isDefaultOg && (
+        <>
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="og:image:alt" content="KLOKIE. — Daniel “Klokie” Grossfeld, senior web architect, Stockholm" />
+        </>
+      )
+    }
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description ?? tr("site.description")} />
+    <meta name="twitter:image" content={ogImageAbs} />
+    {jsonLdSafe && <script type="application/ld+json" is:inline set:html={jsonLdSafe} />}
+    <Analytics
+      posthog={{
+        key: import.meta.env.PUBLIC_POSTHOG_KEY,
+        host: import.meta.env.PUBLIC_POSTHOG_HOST,
+      }}
+      sentry={{
+        dsn: import.meta.env.PUBLIC_SENTRY_DSN,
+        environment: import.meta.env.PUBLIC_SENTRY_ENV,
+      }}
+    />
     {
       Object.entries(alternates).map(([l, path]) => (
         <link rel="alternate" hreflang={l} href={new URL(path, siteConfig.url).href} />
