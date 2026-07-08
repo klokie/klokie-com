@@ -352,7 +352,8 @@ const LEGEND: [string, string][] = [
   }
   .thumb:hover { text-decoration: none; border-color: var(--primary); }
   .thumb img { width: 100%; height: 100%; object-fit: cover; }
-  .thumb.contain { padding: 20px; }
+  /* logos are often dark-on-transparent — keep them on light paper in both themes */
+  .thumb.contain { padding: 20px; background: #f5f3ed; }
   .thumb.contain img { object-fit: contain; }
 
   [data-entry].hide,
