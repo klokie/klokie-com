@@ -28,7 +28,7 @@ Stockholm.
 
 ## Education
 
-**Boston University** — *cum laude*, 1993–1998
+**Boston University** — _cum laude_, 1993–1998
 B.S. Computer Systems Engineering · B.A. Music Theory and Composition
 
 ## Languages
