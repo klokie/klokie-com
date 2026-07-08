@@ -2,10 +2,17 @@
   "$schema": "https://unpkg.com/wrangler@latest/config-schema.json",
   "name": "klokie-com",
   "compatibility_date": "2026-01-15",
+  "main": "src/worker.js",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    "binding": "ASSETS",
+    "run_worker_first": true
   },
+  "routes": [
+    { "pattern": "www.klokie.com", "custom_domain": true },
+    { "pattern": "klokie.com", "custom_domain": true }
+  ],
   "observability": {
     "enabled": true
   }
