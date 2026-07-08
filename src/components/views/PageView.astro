@@ -1,0 +1,38 @@
+---
+import { render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import type { Locale } from "@/i18n";
+
+interface Props {
+  lang: Locale;
+  entry: CollectionEntry<"pages">;
+}
+const { lang, entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<SiteLayout lang={lang} title={entry.data.title} description={entry.data.description}>
+  <article class="container">
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</SiteLayout>
+
+<style>
+  .container { max-width: 680px; margin: 0 auto; padding: 48px 24px 96px; }
+  .prose :global(h1) {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .prose :global(h2) { font-size: 1.5rem; font-weight: 400; margin: 1.5em 0 0.6em; }
+  .prose :global(h3) { font-size: 1.2rem; font-weight: 400; margin: 1.5em 0 0.5em; }
+  .prose :global(p) { font-size: 1.05rem; line-height: 1.65; margin-bottom: 1.2em; }
+  .prose :global(ul),
+  .prose :global(ol) { padding-left: 1.4em; margin-bottom: 1.2em; line-height: 1.65; }
+  .prose :global(hr) { border: 0; height: 1px; background: var(--border); margin: 32px 0; }
+</style>

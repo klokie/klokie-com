@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/wrangler@latest/config-schema.json",
-  "name": "site-name-here",
+  "name": "klokie-com",
   "compatibility_date": "2026-01-15",
   "assets": {
     "directory": "./dist",

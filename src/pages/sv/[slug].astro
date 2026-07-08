@@ -1,0 +1,16 @@
+---
+import { getCollection } from "astro:content";
+import PageView from "@/components/views/PageView.astro";
+import { localizedEntries } from "@/i18n";
+
+export async function getStaticPaths() {
+  const all = await getCollection("pages");
+  return localizedEntries(all, "sv").map(({ slug, entry }) => ({
+    params: { slug: entry.data.slug ?? slug },
+    props: { entry },
+  }));
+}
+const { entry } = Astro.props;
+---
+
+<PageView lang="sv" entry={entry} />

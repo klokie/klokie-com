@@ -1,0 +1,16 @@
+---
+import { getCollection } from "astro:content";
+import CaseView from "@/components/views/CaseView.astro";
+import { localizedEntries } from "@/i18n";
+
+export async function getStaticPaths() {
+  const all = await getCollection("cases", ({ data }) => data.featured && !data.draft);
+  return localizedEntries(all, "sv").map(({ slug, entry }) => ({
+    params: { slug },
+    props: { entry },
+  }));
+}
+const { entry } = Astro.props;
+---
+
+<CaseView lang="sv" entry={entry} />

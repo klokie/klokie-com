@@ -1,0 +1,20 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import { t } from "@/i18n/ui";
+const tr = t("en");
+---
+
+<SiteLayout title={tr("notfound.title")}>
+  <section class="container nf">
+    <h1>404<em>.</em></h1>
+    <p>{tr("notfound.body")}</p>
+    <a href="/">{tr("notfound.home")}</a>
+  </section>
+</SiteLayout>
+
+<style>
+  .nf { padding: 96px 24px; }
+  h1 { font-size: 4rem; font-weight: 300; margin-bottom: 12px; }
+  h1 em { font-style: normal; color: var(--primary); }
+  p { color: var(--muted); margin-bottom: 24px; }
+</style>

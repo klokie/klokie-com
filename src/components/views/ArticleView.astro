@@ -1,0 +1,67 @@
+---
+import { render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import { localizeUrl, dateLocale, type Locale } from "@/i18n";
+import { t } from "@/i18n/ui";
+
+interface Props {
+  lang: Locale;
+  entry: CollectionEntry<"articles">;
+}
+const { lang, entry } = Astro.props;
+const tr = t(lang);
+const { data } = entry;
+const { Content } = await render(entry);
+const fmt = new Intl.DateTimeFormat(dateLocale[lang], {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<SiteLayout lang={lang} title={data.title} description={data.description}>
+  <article class="container">
+    <a class="back mono" href={localizeUrl("/articles/", lang)}>{tr("articles.back")}</a>
+    <div class="kicker mono">
+      {data.topics.join(" · ")}{data.topics.length > 0 && " · "}{fmt.format(data.date)}
+    </div>
+    <h1>{data.title}</h1>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</SiteLayout>
+
+<style>
+  .mono { font-family: var(--font-mono); }
+  .container { max-width: 680px; margin: 0 auto; padding: 48px 24px 96px; }
+  .back {
+    display: inline-block;
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 32px;
+  }
+  .back:hover { color: var(--primary); text-decoration: none; }
+  .kicker {
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    margin-bottom: 24px;
+  }
+  .prose :global(p) { font-size: 1.05rem; line-height: 1.65; margin-bottom: 1.2em; }
+  .prose :global(h2) { font-size: 1.4rem; font-weight: 400; margin: 1.5em 0 0.6em; }
+  .prose :global(h3) { font-size: 1.15rem; font-weight: 400; margin: 1.5em 0 0.5em; }
+  .prose :global(ul),
+  .prose :global(ol) { padding-left: 1.4em; margin-bottom: 1.2em; line-height: 1.65; }
+</style>

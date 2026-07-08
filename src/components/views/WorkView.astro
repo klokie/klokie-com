@@ -1,0 +1,413 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import { localizedEntries, localizeUrl, type Locale } from "@/i18n";
+import { t } from "@/i18n/ui";
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const tr = t(lang);
+
+const all = await getCollection("cases", ({ data }) => !data.draft);
+const cases = localizedEntries(all, lang);
+
+const CHIP: Record<string, string> = {
+  music: "var(--t-green)",
+  "e-commerce": "var(--t-yellow)",
+  streaming: "var(--t-blue)",
+  "fashion-art": "var(--t-violet)",
+  cms: "var(--t-indigo)",
+  publishing: "var(--t-red)",
+};
+const chipColor = (categories: string[]) => {
+  for (const c of categories) if (CHIP[c]) return CHIP[c];
+  return "var(--dim)";
+};
+
+type CaseData = (typeof all)[number]["data"];
+const yearOf = (d?: Date) => d?.getFullYear();
+const tagsFor = (data: CaseData) =>
+  [
+    ...data.categories,
+    ...(data.location?.split(",").map((l) => l.trim().toLowerCase()) ?? []),
+    ...(data.role?.split(" / ").map((r) => r.toLowerCase()) ?? []),
+    ...(data.featured ? ["featured"] : []),
+    ...(yearOf(data.date) ? [String(yearOf(data.date))] : []),
+  ].join(",");
+
+const years = [...new Set(cases.map(({ entry }) => yearOf(entry.data.date)))].sort(
+  (a, b) => (b ?? 0) - (a ?? 0),
+);
+const byYear = years.map((y) => ({
+  year: y,
+  items: cases
+    .filter(({ entry }) => yearOf(entry.data.date) === y)
+    .sort(
+      (a, b) =>
+        Number(b.entry.data.featured) - Number(a.entry.data.featured) ||
+        (b.entry.data.date?.getTime() ?? 0) - (a.entry.data.date?.getTime() ?? 0) ||
+        a.entry.data.title.localeCompare(b.entry.data.title),
+    ),
+}));
+
+const allYears = cases.map(({ entry }) => yearOf(entry.data.date)).filter(Boolean) as number[];
+const firstYear = Math.min(...allYears);
+const lastYear = Math.max(...allYears);
+const span = lastYear - firstYear;
+const fmtYears = (data: CaseData) => {
+  const s = yearOf(data.date);
+  const e = yearOf(data.endDate);
+  if (!s) return "";
+  return e && e !== s ? `${s}–${e}` : String(s);
+};
+
+const LEGEND: [string, string][] = [
+  ["music", "var(--t-green)"],
+  ["e-commerce", "var(--t-yellow)"],
+  ["streaming", "var(--t-blue)"],
+  ["fashion-art", "var(--t-violet)"],
+  ["cms", "var(--t-indigo)"],
+  ["publishing", "var(--t-red)"],
+  ["featured", "var(--t-orange)"],
+];
+---
+
+<SiteLayout
+  lang={lang}
+  title={tr("nav.work")}
+  description={`${cases.length} ${tr("work.projects")} ${firstYear}–${lastYear}.`}
+>
+  <section class="hero container">
+    <div class="eyebrow mono">
+      {tr("work.eyebrow")} · {firstYear} → {lastYear}
+    </div>
+    <h1>
+      {span}
+      {tr("work.title.pre")}<br />{tr("work.title.post")}<em>.</em>
+    </h1>
+    <p class="lede">
+      {cases.length}
+      {tr("work.projects")}
+      {tr("work.lede.tail")}
+    </p>
+  </section>
+
+  <div id="filterbar" class="container mono idle">
+    <span class="active-tag"></span><span id="count"></span>
+    <button id="clear">{tr("work.clear")}</button>
+  </div>
+
+  <div
+    class="ledger container"
+    data-word-one={tr("work.project")}
+    data-word-many={tr("work.projects.short")}
+  >
+    {
+      byYear.map(({ year, items }) => (
+        <div class="year-block">
+          <button class="year tag mono" data-tag={year ? String(year) : undefined}>
+            {year ?? "····"}
+          </button>
+          <div class="entries">
+            {items.map(({ slug, entry: { data } }) =>
+              data.featured ? (
+                <div class="feature" data-entry data-tags={tagsFor(data)}>
+                  <div>
+                    <div class="kicker mono">
+                      <button class="tag" data-tag="featured">{tr("work.featured")}</button>
+                      {data.categories.map((c) => (
+                        <>
+                          {" · "}
+                          <button class="tag" data-tag={c}>{c}</button>
+                        </>
+                      ))}
+                    </div>
+                    <h3>
+                      <a href={localizeUrl(`/work/${slug}/`, lang)}>{data.title}</a>
+                    </h3>
+                    <p>{data.summary}</p>
+                    <div class="meta mono">
+                      {data.role &&
+                        data.role.split(" / ").map((r, i) => (
+                          <>
+                            {i > 0 && " / "}
+                            <button class="tag" data-tag={r.toLowerCase()}>
+                              {r.toUpperCase()}
+                            </button>
+                          </>
+                        ))}
+                      {data.location &&
+                        data.location.split(",").map((l) => (
+                          <>
+                            {" · "}
+                            <button class="tag" data-tag={l.trim().toLowerCase()}>
+                              {l.trim().toUpperCase()}
+                            </button>
+                          </>
+                        ))}
+                      {data.date && <> · {fmtYears(data)}</>}
+                    </div>
+                  </div>
+                  <a class="thumb mono" href={localizeUrl(`/work/${slug}/`, lang)}>
+                    {data.image ? (
+                      <img src={data.image} alt={data.imageAlt ?? data.title} loading="lazy" />
+                    ) : (
+                      <span>{tr("work.imagePending")}</span>
+                    )}
+                  </a>
+                </div>
+              ) : (
+                <div class="row" data-entry data-tags={tagsFor(data)}>
+                  <button
+                    class="chipbtn tag"
+                    data-tag={data.categories[0]}
+                    title={data.categories.join(", ") || undefined}
+                    disabled={!data.categories.length}
+                  >
+                    <span class="chip" style={`background:${chipColor(data.categories)}`} />
+                  </button>
+                  <span class="name">{data.title}</span>
+                  {data.location && (
+                    <button
+                      class="loc tag mono"
+                      data-tag={data.location.split(",")[0].trim().toLowerCase()}
+                    >
+                      {data.location.split(",")[0].trim().toUpperCase()}
+                    </button>
+                  )}
+                </div>
+              ),
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="legend container mono">
+    {
+      LEGEND.map(([label, color]) => (
+        <button class="tag" data-tag={label}>
+          <span class="chip" style={`background:${color}`} />
+          {label === "cms" ? "cms & platforms" : label.replace("-", " & ")}
+        </button>
+      ))
+    }
+  </div>
+</SiteLayout>
+
+<style>
+  .mono { font-family: var(--font-mono); }
+  .hero { padding: 64px 24px 24px; }
+  .eyebrow {
+    font-size: 11.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 4.25rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    margin: 12px 0 16px;
+  }
+  h1 em { font-style: normal; color: var(--primary); }
+  .lede { color: var(--muted); max-width: 52ch; font-size: 1.1rem; }
+
+  .tag {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    border-bottom: 1px dotted transparent;
+    transition:
+      color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out);
+  }
+  .tag:not(:disabled):hover,
+  .tag.on { color: var(--primary); border-bottom-color: var(--primary); }
+  .tag:disabled { cursor: default; }
+
+  #filterbar {
+    padding-top: 0;
+    padding-bottom: 8px;
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    min-height: 28px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  #filterbar .active-tag {
+    color: var(--bg);
+    background: var(--primary);
+    border-radius: 3px;
+    padding: 2px 8px;
+  }
+  #filterbar #clear {
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 3px;
+    font: inherit;
+    padding: 2px 8px;
+    letter-spacing: inherit;
+    text-transform: inherit;
+  }
+  #filterbar #clear:hover { color: var(--primary); border-color: var(--primary); }
+  #filterbar.idle .active-tag,
+  #filterbar.idle #count,
+  #filterbar.idle #clear { display: none; }
+
+  .ledger { padding-top: 16px; padding-bottom: 96px; }
+  .year-block {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 0 24px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .year {
+    font-weight: 400;
+    font-size: 13.5px;
+    color: var(--dim);
+    padding-top: 18px;
+    font-variant-numeric: tabular-nums;
+    text-align: left;
+    align-self: start;
+  }
+  .entries { padding: 8px 0 20px; min-width: 0; }
+  .row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 9px 0;
+    border-bottom: 1px dotted var(--border-soft);
+  }
+  .row:last-child { border-bottom: none; }
+  .row .name { font-weight: 400; font-size: 1.02rem; }
+  .row .loc {
+    font-size: 11.5px;
+    color: var(--dim);
+    letter-spacing: 0.06em;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .chip { width: 8px; height: 8px; border-radius: 2px; flex: none; display: inline-block; }
+  .chipbtn { line-height: 0; align-self: center; }
+  .chipbtn:not(:disabled):hover .chip { outline: 2px solid var(--primary); outline-offset: 1px; }
+
+  .feature {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border-soft);
+    align-items: center;
+  }
+  .feature .kicker {
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 6px;
+  }
+  .feature .kicker .tag { color: var(--primary); }
+  .feature h3 { font-size: 1.7rem; font-weight: 400; letter-spacing: -0.01em; margin-bottom: 6px; }
+  .feature h3 a { color: var(--text); }
+  .feature h3 a:hover { color: var(--primary); text-decoration: none; }
+  .feature p { color: var(--muted); font-size: 0.95rem; max-width: 56ch; }
+  .feature .meta { font-size: 11px; color: var(--dim); letter-spacing: 0.08em; margin-top: 10px; }
+  .thumb {
+    aspect-ratio: 4 / 3;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.12em;
+    overflow: hidden;
+  }
+  .thumb:hover { text-decoration: none; border-color: var(--primary); }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+  [data-entry].hide,
+  .year-block.hide { display: none; }
+
+  .legend {
+    padding-bottom: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .legend .tag { display: flex; gap: 6px; align-items: center; }
+
+  @media (max-width: 640px) {
+    .year-block { grid-template-columns: 1fr; }
+    .year { padding: 14px 0 0; color: var(--primary); }
+    .feature { grid-template-columns: 1fr; }
+    .thumb { max-height: 160px; }
+    .row .loc { display: none; }
+  }
+</style>
+
+<script>
+  const bar = document.getElementById("filterbar")!;
+  const activeEl = bar.querySelector(".active-tag")!;
+  const countEl = document.getElementById("count")!;
+  const ledger = document.querySelector<HTMLElement>(".ledger")!;
+  let active: string | null = null;
+
+  function applyFilter(tag: string | null) {
+    active = tag;
+    let shown = 0;
+    document.querySelectorAll<HTMLElement>("[data-entry]").forEach((e) => {
+      const hit = !tag || (e.dataset.tags ?? "").split(",").includes(tag);
+      e.classList.toggle("hide", !hit);
+      if (hit) shown++;
+    });
+    document.querySelectorAll<HTMLElement>(".year-block").forEach((b) => {
+      const any = [...b.querySelectorAll("[data-entry]")].some(
+        (e) => !e.classList.contains("hide"),
+      );
+      b.classList.toggle("hide", !any);
+    });
+    document
+      .querySelectorAll<HTMLElement>(".tag")
+      .forEach((t) => t.classList.toggle("on", !!tag && t.dataset.tag === tag));
+    bar.classList.toggle("idle", !tag);
+    if (tag) {
+      activeEl.textContent = tag;
+      countEl.textContent = `${shown} ${
+        shown === 1 ? ledger.dataset.wordOne : ledger.dataset.wordMany
+      }`;
+      history.replaceState(null, "", "#" + encodeURIComponent(tag));
+    } else {
+      history.replaceState(null, "", location.pathname);
+    }
+  }
+
+  document.addEventListener("click", (e) => {
+    const t = (e.target as HTMLElement).closest<HTMLElement>(".tag");
+    if (!t || !t.dataset.tag || (t as HTMLButtonElement).disabled) return;
+    applyFilter(active === t.dataset.tag ? null : t.dataset.tag);
+  });
+  document.getElementById("clear")!.addEventListener("click", () => applyFilter(null));
+  if (location.hash) applyFilter(decodeURIComponent(location.hash.slice(1)));
+</script>

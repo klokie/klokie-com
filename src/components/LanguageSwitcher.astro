@@ -1,0 +1,42 @@
+---
+import { locales, localeName, localePaths, type Locale } from "@/i18n";
+
+interface Props {
+  lang: Locale;
+  pathname: string;
+}
+const { lang, pathname } = Astro.props;
+const paths = localePaths(pathname);
+---
+
+<ul class="lang-switch">
+  {
+    locales.map((l) =>
+      l === lang ? (
+        <li><span class="current" aria-current="true">{l}</span></li>
+      ) : (
+        <li><a href={paths[l]} title={localeName[l]}>{l}</a></li>
+      ),
+    )
+  }
+</ul>
+
+<style>
+  .lang-switch {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .lang-switch a,
+  .lang-switch .current {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .lang-switch a { color: var(--dim); }
+  .lang-switch a:hover { color: var(--primary); text-decoration: none; }
+  .lang-switch .current { color: var(--text); cursor: default; }
+</style>

@@ -1,0 +1,93 @@
+---
+import { render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import { localizeUrl, type Locale } from "@/i18n";
+import { t } from "@/i18n/ui";
+
+interface Props {
+  lang: Locale;
+  entry: CollectionEntry<"cases">;
+}
+const { lang, entry } = Astro.props;
+const tr = t(lang);
+const { data } = entry;
+const { Content } = await render(entry);
+
+const years = data.date
+  ? data.endDate && data.endDate.getFullYear() !== data.date.getFullYear()
+    ? `${data.date.getFullYear()}–${data.endDate.getFullYear()}`
+    : String(data.date.getFullYear())
+  : "";
+---
+
+<SiteLayout lang={lang} title={data.title} description={data.summary} ogImage={data.image}>
+  <article class="container">
+    <a class="back mono" href={localizeUrl("/work/", lang)}>{tr("work.back")}</a>
+    <div class="kicker mono">
+      {tr("work.featured")}{data.categories.map((c) => ` · ${c}`).join("")}
+    </div>
+    <h1>{data.title}</h1>
+    <p class="summary">{data.summary}</p>
+    <div class="meta mono">
+      {data.role && <span>{data.role.toUpperCase()}</span>}
+      {data.location && <span> · {data.location.toUpperCase()}</span>}
+      {years && <span> · {years}</span>}
+      {
+        data.url && (
+          <span>
+            {" · "}
+            <a href={data.url} target="_blank" rel="noopener noreferrer">
+              {tr("work.visit")}
+            </a>
+          </span>
+        )
+      }
+    </div>
+    {data.image && <img class="cover" src={data.image} alt={data.imageAlt ?? data.title} />}
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</SiteLayout>
+
+<style>
+  .mono { font-family: var(--font-mono); }
+  .container { max-width: 720px; margin: 0 auto; padding: 48px 24px 96px; }
+  .back {
+    display: inline-block;
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 32px;
+  }
+  .back:hover { color: var(--primary); text-decoration: none; }
+  .kicker {
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 16px;
+  }
+  .summary { color: var(--muted); font-size: 1.15rem; max-width: 56ch; }
+  .meta { font-size: 11px; color: var(--dim); letter-spacing: 0.08em; margin: 14px 0 32px; }
+  .cover {
+    width: 100%;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .prose :global(p) { font-size: 1.02rem; line-height: 1.65; margin-bottom: 1.2em; }
+  .prose :global(h2),
+  .prose :global(h3) { margin: 1.5em 0 0.5em; font-weight: 400; }
+  .prose :global(ul),
+  .prose :global(ol) { padding-left: 1.4em; margin-bottom: 1.2em; line-height: 1.65; }
+</style>

@@ -1,0 +1,78 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import { localizedEntries, localizeUrl, dateLocale, type Locale } from "@/i18n";
+import { t } from "@/i18n/ui";
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const tr = t(lang);
+
+const all = await getCollection("articles", ({ data }) => !data.draft);
+const articles = localizedEntries(all, lang).sort(
+  (a, b) => b.entry.data.date.getTime() - a.entry.data.date.getTime(),
+);
+const fmt = new Intl.DateTimeFormat(dateLocale[lang], {
+  year: "numeric",
+  month: "short",
+});
+---
+
+<SiteLayout lang={lang} title={tr("articles.title")} description={tr("articles.metaDesc")}>
+  <section class="hero container">
+    <h1>{tr("articles.title")}<em>.</em></h1>
+    <p class="lede">{tr("articles.metaDesc")}</p>
+  </section>
+
+  <div class="list container">
+    {articles.length === 0 && <p class="muted">{tr("articles.empty")}</p>}
+    <ul>
+      {
+        articles.map(({ slug, entry: { data } }) => (
+          <li>
+            <a href={localizeUrl(`/articles/${slug}/`, lang)}>
+              <span class="name">{data.title}</span>
+              <span class="meta mono">
+                {data.topics[0] && `${data.topics[0]} · `}
+                {fmt.format(data.date)}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    {articles.length > 0 && <p class="muted more">{tr("articles.empty")}</p>}
+  </div>
+</SiteLayout>
+
+<style>
+  .mono { font-family: var(--font-mono); }
+  .hero { padding: 64px 24px 8px; }
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    margin-bottom: 16px;
+  }
+  h1 em { font-style: normal; color: var(--primary); }
+  .lede { color: var(--muted); max-width: 52ch; font-size: 1.1rem; }
+  .list { padding-bottom: 96px; }
+  .list ul { list-style: none; margin: 0; padding: 0; }
+  .list li { border-bottom: 1px dotted var(--border-soft); }
+  .list a {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    color: var(--text);
+  }
+  .list a:hover { text-decoration: none; }
+  .list a:hover .name { color: var(--primary); }
+  .name { font-size: 1.15rem; font-weight: 400; }
+  .meta { font-size: 11px; color: var(--dim); letter-spacing: 0.08em; white-space: nowrap; }
+  .more { margin-top: 24px; font-size: 0.9rem; }
+</style>

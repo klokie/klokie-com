@@ -1,0 +1,16 @@
+---
+import { getCollection } from "astro:content";
+import ArticleView from "@/components/views/ArticleView.astro";
+import { localizedEntries } from "@/i18n";
+
+export async function getStaticPaths() {
+  const all = await getCollection("articles", ({ data }) => !data.draft);
+  return localizedEntries(all, "sv").map(({ slug, entry }) => ({
+    params: { slug },
+    props: { entry },
+  }));
+}
+const { entry } = Astro.props;
+---
+
+<ArticleView lang="sv" entry={entry} />

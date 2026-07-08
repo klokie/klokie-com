@@ -2,32 +2,108 @@
 import BaseLayout from "@klokie/theme/layouts/BaseLayout.astro";
 import SiteHeader from "@klokie/theme/components/SiteHeader.astro";
 import SiteFooter from "@klokie/theme/components/SiteFooter.astro";
-import "@klokie/theme/tokens/jordsang.css";
+import "@klokie/theme/tokens/klokie.css";
+import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
 import { siteConfig } from "@/site/config";
+import { localePaths, localizeUrl, defaultLocale, type Locale } from "@/i18n";
+import { t } from "@/i18n/ui";
 
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  lang?: Locale;
 }
-const { title, description, ogImage } = Astro.props;
+const { title, description, ogImage, lang = defaultLocale } = Astro.props;
+const tr = t(lang);
 const fullTitle = title ? `${title} — ${siteConfig.title}` : siteConfig.title;
+const canonical = new URL(Astro.url.pathname, siteConfig.url).href;
+const alternates = localePaths(Astro.url.pathname);
+
+const nav = [
+  { label: tr("nav.work"), href: localizeUrl("/work", lang) },
+  { label: tr("nav.articles"), href: localizeUrl("/articles", lang) },
+  { label: tr("nav.about"), href: localizeUrl("/about", lang) },
+  { label: tr("nav.contact"), href: localizeUrl("/contact", lang) },
+];
 ---
 
 <BaseLayout
   title={fullTitle}
-  description={description ?? siteConfig.description}
+  description={description ?? tr("site.description")}
   preset={siteConfig.preset}
   ogImage={ogImage}
+  lang={lang}
 >
+  <Fragment slot="head">
+    <link rel="canonical" href={canonical} />
+    <meta property="og:url" content={canonical} />
+    {
+      Object.entries(alternates).map(([l, path]) => (
+        <link rel="alternate" hreflang={l} href={new URL(path, siteConfig.url).href} />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(alternates[defaultLocale], siteConfig.url).href}
+    />
+    <script is:inline>
+      // apply saved theme before paint; default is dark (:root)
+      if (localStorage.getItem("theme") === "light")
+        document.documentElement.dataset.theme = "light";
+    </script>
+  </Fragment>
+
+  <div class="rainbow-stripe"></div>
   <SiteHeader
     title={siteConfig.title}
-    tagline={siteConfig.tagline}
     monogram={siteConfig.monogram}
-    nav={siteConfig.nav}
-  />
+    nav={nav}
+    homeHref={localizeUrl("/", lang)}
+  >
+    <Fragment slot="nav-end">
+      <LanguageSwitcher lang={lang} pathname={Astro.url.pathname} />
+      <button id="theme-toggle" aria-label="Toggle color theme">
+        dark ⁄ light
+      </button>
+    </Fragment>
+  </SiteHeader>
   <main>
     <slot />
   </main>
-  <SiteFooter copyrightName={siteConfig.copyrightName} />
+  <div class="rainbow-stripe"></div>
+  <SiteFooter
+    copyrightName={siteConfig.copyrightName}
+    social={siteConfig.social}
+    credit={{ label: "Made with ❤️ by Klokie.com", href: "https://klokie.com" }}
+  />
 </BaseLayout>
+
+<style>
+  #theme-toggle {
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 4px 12px;
+    margin-left: 16px;
+  }
+  #theme-toggle:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+  }
+</style>
+
+<script>
+  document.getElementById("theme-toggle")?.addEventListener("click", () => {
+    const root = document.documentElement;
+    const next = root.dataset.theme === "light" ? "dark" : "light";
+    if (next === "light") root.dataset.theme = "light";
+    else delete root.dataset.theme;
+    localStorage.setItem("theme", next);
+  });
+</script>
