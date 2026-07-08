@@ -91,6 +91,7 @@ const years = data.date
     <div class="prose">
       <Content />
     </div>
+    <a class="back mono bottom" href={localizeUrl("/work/", lang)}>{tr("work.back")}</a>
   </article>
 </SiteLayout>
 
@@ -106,6 +107,7 @@ const years = data.date
     margin-bottom: 32px;
   }
   .back:hover { color: var(--primary); text-decoration: none; }
+  .back.bottom { margin: 40px 0 0; }
   .kicker {
     font-size: 10.5px;
     letter-spacing: 0.18em;

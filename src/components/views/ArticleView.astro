@@ -30,6 +30,7 @@ const fmt = new Intl.DateTimeFormat(dateLocale[lang], {
     <div class="prose">
       <Content />
     </div>
+    <a class="back mono bottom" href={localizeUrl("/articles/", lang)}>{tr("articles.back")}</a>
   </article>
 </SiteLayout>
 
@@ -45,6 +46,7 @@ const fmt = new Intl.DateTimeFormat(dateLocale[lang], {
     margin-bottom: 32px;
   }
   .back:hover { color: var(--primary); text-decoration: none; }
+  .back.bottom { margin: 40px 0 0; }
   .kicker {
     font-size: 10.5px;
     letter-spacing: 0.18em;

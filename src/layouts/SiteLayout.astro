@@ -80,6 +80,25 @@ const nav = [
   />
 </BaseLayout>
 
+<style is:global>
+  /* sticky footer: short pages keep the footer at the viewport bottom */
+  body {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+  }
+  body > main {
+    flex: 1;
+  }
+  /* compact footer: the rainbow stripe is the separator, so drop the theme
+     footer's own border + big margins */
+  .site-footer {
+    margin-top: 0 !important;
+    padding: 18px 24px 22px !important;
+    border-top: none !important;
+  }
+</style>
+
 <style>
   #theme-toggle {
     cursor: pointer;
