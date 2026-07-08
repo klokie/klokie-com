@@ -1,0 +1,62 @@
+---
+import { getCollection, render } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+
+export async function getStaticPaths() {
+  const items = await getCollection("pages", ({ data }) => data.published);
+  return items.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<SiteLayout title={entry.data.title} description={entry.data.description}>
+  <article class="container">
+    <h1>{entry.data.title}</h1>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</SiteLayout>
+
+<style>
+  .container { max-width: 680px; margin: 0 auto; padding: 48px 24px; }
+  h1 {
+    font-family: var(--font-display);
+    font-size: 44px;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .prose :global(p) {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+    margin-bottom: 1.2em;
+  }
+  .prose :global(h2) {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 0.01em;
+    margin: 1.5em 0 0.6em;
+  }
+  .prose :global(h3) {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.01em;
+    margin: 1.5em 0 0.5em;
+  }
+  .prose :global(a) { color: var(--primary); }
+  .prose :global(ul),
+  .prose :global(ol) {
+    padding-left: 1.4em;
+    margin-bottom: 1.2em;
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+</style>

@@ -1,0 +1,101 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import GigCard from "@klokie/theme/components/GigCard.astro";
+import NewsCard from "@klokie/theme/components/NewsCard.astro";
+import Wordmark from "@klokie/theme/components/Wordmark.astro";
+import TextilePattern from "@klokie/theme/components/TextilePattern.astro";
+import { siteConfig } from "@/site/config";
+
+const allGigs = (await getCollection("gigs", ({ data }) => data.published))
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+const now = Date.now();
+const upcomingGigs = allGigs.filter(
+  (g) => g.data.date.getTime() >= now && g.data.status !== "past",
+);
+const allNews = (await getCollection("news", ({ data }) => data.published))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+
+<SiteLayout>
+  <section class="hero container">
+    <Wordmark name={siteConfig.title} tagline={siteConfig.tagline} fontSize={56} />
+    <TextilePattern width={520} height={36} />
+  </section>
+
+  <section class="container">
+    <h2 class="section-heading">Kommande spelningar</h2>
+    {upcomingGigs.length === 0 ? (
+      <p class="muted">Inga spelningar planerade just nu — kom tillbaka snart.</p>
+    ) : (
+      <div class="gig-list">
+        {upcomingGigs.map(({ data }) => (
+          <GigCard
+            title={data.title}
+            date={data.date}
+            venue={data.venue}
+            city={data.city}
+            ticketUrl={data.ticketUrl}
+            status={data.status}
+            locale={siteConfig.locale}
+          />
+        ))}
+      </div>
+    )}
+    <a class="see-all" href={siteConfig.paths.gigs}>→ Alla spelningar</a>
+  </section>
+
+  <section class="container">
+    <h2 class="section-heading">Nyheter</h2>
+    <div class="news-list">
+      {allNews.map(({ id, data }) => (
+        <NewsCard
+          title={data.title}
+          date={data.date}
+          description={data.description}
+          href={`${siteConfig.paths.news}/${id}`}
+          locale={siteConfig.locale}
+        />
+      ))}
+    </div>
+    <a class="see-all" href={siteConfig.paths.news}>→ Alla nyheter</a>
+  </section>
+</SiteLayout>
+
+<style>
+  .hero {
+    padding: 64px 24px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: 28px;
+    margin-bottom: 16px;
+    letter-spacing: 0.01em;
+  }
+  .gig-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 600px) {
+    .gig-list { grid-template-columns: 1fr 1fr; }
+  }
+  .news-list { display: flex; flex-direction: column; }
+  .see-all {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--primary);
+    letter-spacing: 0.04em;
+  }
+</style>

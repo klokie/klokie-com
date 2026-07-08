@@ -1,0 +1,78 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import GigCard from "@klokie/theme/components/GigCard.astro";
+import { siteConfig } from "@/site/config";
+
+const all = (await getCollection("gigs", ({ data }) => data.published))
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+const now = Date.now();
+const upcoming = all.filter((g) => g.data.date.getTime() >= now && g.data.status !== "past");
+const past = all.filter((g) => g.data.date.getTime() < now || g.data.status === "past").reverse();
+---
+
+<SiteLayout title="Spelningar" description="Kommande och tidigare spelningar">
+  <section class="container">
+    <h1>Spelningar</h1>
+    <h2>Kommande</h2>
+    {upcoming.length === 0 ? (
+      <p class="muted">Inga spelningar planerade just nu.</p>
+    ) : (
+      <div class="grid">
+        {upcoming.map(({ data }) => (
+          <GigCard
+            title={data.title}
+            date={data.date}
+            venue={data.venue}
+            city={data.city}
+            ticketUrl={data.ticketUrl}
+            status={data.status}
+            locale={siteConfig.locale}
+          />
+        ))}
+      </div>
+    )}
+
+    {past.length > 0 && (
+      <>
+        <h2>Tidigare</h2>
+        <div class="grid">
+          {past.map(({ data }) => (
+            <GigCard
+              title={data.title}
+              date={data.date}
+              venue={data.venue}
+              city={data.city}
+              status="past"
+              locale={siteConfig.locale}
+            />
+          ))}
+        </div>
+      </>
+    )}
+  </section>
+</SiteLayout>
+
+<style>
+  .container { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
+  h1 {
+    font-family: var(--font-display);
+    font-size: 44px;
+    letter-spacing: 0.01em;
+    margin-bottom: 24px;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: 0.01em;
+    margin: 32px 0 16px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 600px) {
+    .grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>

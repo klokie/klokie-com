@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import NewsCard from "@klokie/theme/components/NewsCard.astro";
+import { siteConfig } from "@/site/config";
+
+const news = (await getCollection("news", ({ data }) => data.published))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<SiteLayout title="Nyheter" description="Nyheter och uppdateringar">
+  <section class="container">
+    <h1>Nyheter</h1>
+    {news.length === 0 ? (
+      <p class="muted">Inga nyheter än — kom tillbaka snart.</p>
+    ) : (
+      <div class="list">
+        {news.map(({ id, data }) => (
+          <NewsCard
+            title={data.title}
+            date={data.date}
+            description={data.description}
+            href={`${siteConfig.paths.news}/${id}`}
+            locale={siteConfig.locale}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+</SiteLayout>
+
+<style>
+  .container { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
+  h1 {
+    font-family: var(--font-display);
+    font-size: 44px;
+    letter-spacing: 0.01em;
+    margin-bottom: 24px;
+  }
+  .list { display: flex; flex-direction: column; }
+</style>

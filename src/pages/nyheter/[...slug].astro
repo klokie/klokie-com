@@ -1,0 +1,100 @@
+---
+import { getCollection, render } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import { siteConfig } from "@/site/config";
+
+export async function getStaticPaths() {
+  const items = await getCollection("news", ({ data }) => data.published);
+  return items.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const dateLabel = entry.data.date.toLocaleDateString(siteConfig.locale, {
+  day: "numeric", month: "long", year: "numeric",
+});
+---
+
+<SiteLayout title={entry.data.title} description={entry.data.description}>
+  <article class="container">
+    <div class="meta">
+      <time datetime={entry.data.date.toISOString()}>{dateLabel}</time>
+    </div>
+    <h1>{entry.data.title}</h1>
+    {entry.data.description && <p class="lede">{entry.data.description}</p>}
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</SiteLayout>
+
+<style>
+  .container { max-width: 680px; margin: 0 auto; padding: 48px 24px; }
+  .meta {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-size: 44px;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .lede {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+  }
+  .prose :global(p) {
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: var(--text);
+    line-height: 1.65;
+    margin-bottom: 1.2em;
+  }
+  .prose :global(h2) {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 0.01em;
+    margin: 1.5em 0 0.6em;
+  }
+  .prose :global(h3) {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.01em;
+    margin: 1.5em 0 0.5em;
+  }
+  .prose :global(a) { color: var(--primary); }
+  .prose :global(img) {
+    border-radius: var(--radius-card);
+    margin: 1.5em 0;
+  }
+  .prose :global(ul),
+  .prose :global(ol) {
+    padding-left: 1.4em;
+    margin-bottom: 1.2em;
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--primary);
+    padding-left: 1em;
+    color: var(--muted);
+    font-style: italic;
+    margin: 1.2em 0;
+  }
+</style>

@@ -1,0 +1,33 @@
+---
+import BaseLayout from "@klokie/theme/layouts/BaseLayout.astro";
+import SiteHeader from "@klokie/theme/components/SiteHeader.astro";
+import SiteFooter from "@klokie/theme/components/SiteFooter.astro";
+import "@klokie/theme/tokens/jordsang.css";
+import { siteConfig } from "@/site/config";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+const { title, description, ogImage } = Astro.props;
+const fullTitle = title ? `${title} — ${siteConfig.title}` : siteConfig.title;
+---
+
+<BaseLayout
+  title={fullTitle}
+  description={description ?? siteConfig.description}
+  preset={siteConfig.preset}
+  ogImage={ogImage}
+>
+  <SiteHeader
+    title={siteConfig.title}
+    tagline={siteConfig.tagline}
+    monogram={siteConfig.monogram}
+    nav={siteConfig.nav}
+  />
+  <main>
+    <slot />
+  </main>
+  <SiteFooter copyrightName={siteConfig.copyrightName} />
+</BaseLayout>

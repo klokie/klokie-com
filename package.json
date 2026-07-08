@@ -1,0 +1,27 @@
+{
+  "name": "klokie-site-starter",
+  "version": "0.1.0",
+  "description": "Astro starter for vault-driven klokie sites (Cloudflare Pages, MDX, content collections).",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@10.10.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/mdx": "^4.0.3",
+    "@astrojs/rss": "^4.0.10",
+    "@astrojs/sitemap": "^3.2.1",
+    "@klokie/theme": "file:../klokie-theme",
+    "astro": "^5.0.0",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0"
+  }
+}
