@@ -6,6 +6,9 @@ location: "New York"
 categories: [e-commerce, widgets]
 role: "Senior Full-stack Engineer"
 summary: "Shopping widget for New York Magazine, built with Gelo Factory — embeddable in iGoogle, OS X Dashboard, Google Desktop, and most websites."
+image: "/media/new-york-magazine-shop-a-matic.png"
+imageFit: "contain"
+imageAlt: "New York Magazine — Shop-a-Matic"
 featured: true
 draft: false
 generated: true

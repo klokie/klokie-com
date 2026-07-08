@@ -15,6 +15,7 @@ const cases = defineCollection({
     url: z.string().url().optional(),
     image: z.string().optional(),
     imageAlt: z.string().optional(),
+    imageFit: z.enum(["cover", "contain"]).default("cover"),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
     generated: z.boolean().default(false),

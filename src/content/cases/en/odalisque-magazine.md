@@ -6,6 +6,9 @@ location: "Stockholm"
 categories: [fashion, publishing]
 role: "Co-founder & CTO"
 summary: "Co-Founder and CTO of ODALISQUE Magazine, one of Sweden’s top fashion, arts & culture publications in print and web formats."
+image: "/media/odalisque-magazine.png"
+imageFit: "contain"
+imageAlt: "Odalisque Magazine"
 featured: true
 draft: false
 generated: true

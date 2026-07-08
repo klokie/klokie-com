@@ -6,6 +6,9 @@ location: "New York"
 categories: [art]
 role: "Senior Full-stack Engineer"
 summary: "Dynamic, browsable online showcase for the arts, including an engaging introduction to art for kids in a Java applet (design by OvenDigital)"
+image: "/media/museum-of-modern-art.gif"
+imageFit: "contain"
+imageAlt: "Museum of Modern Art"
 featured: true
 draft: false
 generated: true

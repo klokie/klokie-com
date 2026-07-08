@@ -6,6 +6,9 @@ location: "Stockholm"
 categories: [e-commerce, fashion, mobile]
 role: "Senior Full-stack Engineer / Engineering Management"
 summary: "As a Senior Full-stack Developer at Sneakersnstuff (SNS) from 2020 to 2022, I led a team to develop a mobile app using React Native, TypeScript, and AWS, serving over 1 million users. Key achievements include transitioning the codebase to TypeScript, integrating various APIs, embedding a Unity game, and optimizing AWS services."
+image: "/media/sneakersnstuff.png"
+imageFit: "contain"
+imageAlt: "Sneakersnstuff"
 featured: true
 draft: false
 generated: true

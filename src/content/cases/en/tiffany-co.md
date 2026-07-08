@@ -6,6 +6,9 @@ location: "New York"
 categories: [e-commerce, fashion]
 role: "Senior Full-stack Engineer"
 summary: "Pioneering, top-selling e-commerce website in both Flash and HTML for the world's most famous jewelers (design by OvenDigital)"
+image: "/media/tiffany-co.jpg"
+imageFit: "cover"
+imageAlt: "Tiffany & Co."
 featured: true
 draft: false
 generated: true

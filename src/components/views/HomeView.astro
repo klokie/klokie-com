@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import SiteLayout from "@/layouts/SiteLayout.astro";
-import { localizedEntries, localizeUrl, type Locale } from "@/i18n";
+import { localizedEntries, localizeUrl, dateLocale, type Locale } from "@/i18n";
 import { t } from "@/i18n/ui";
 
 interface Props {
@@ -10,49 +10,107 @@ interface Props {
 const { lang } = Astro.props;
 const tr = t(lang);
 
-const all = await getCollection("cases", ({ data }) => data.featured && !data.draft);
-const featured = localizedEntries(all, lang)
+const allCases = await getCollection("cases", ({ data }) => data.featured && !data.draft);
+const featured = localizedEntries(allCases, lang)
   .sort(
     (a, b) =>
       (b.entry.data.date?.getTime() ?? 0) - (a.entry.data.date?.getTime() ?? 0),
   )
   .slice(0, 6);
+
+const allArticles = await getCollection("articles", ({ data }) => !data.draft);
+const articles = localizedEntries(allArticles, lang)
+  .sort((a, b) => b.entry.data.date.getTime() - a.entry.data.date.getTime())
+  .slice(0, 4);
+const fmt = new Intl.DateTimeFormat(dateLocale[lang], { year: "numeric", month: "short" });
 ---
 
 <SiteLayout lang={lang}>
-  <section class="hero container">
-    <div class="eyebrow mono">{tr("home.eyebrow")}</div>
-    <h1>Daniel “Klokie”<br />Grossfeld<em>.</em></h1>
-    <p class="lede">{tr("home.lede")}</p>
+  <section class="hero">
+    <div class="hero-inner container">
+      <div class="hero-text">
+        <div class="eyebrow mono">{tr("home.eyebrow")}</div>
+        <h1>Daniel “Klokie”<br />Grossfeld<em>.</em></h1>
+        <p class="lede">{tr("home.lede")}</p>
+      </div>
+      <img
+        class="portrait"
+        src="/media/klokie.jpg"
+        alt="Daniel “Klokie” Grossfeld"
+        width="200"
+        height="200"
+        loading="eager"
+      />
+    </div>
   </section>
 
-  <section class="container featured">
-    <h2 class="mono">{tr("home.featured")}</h2>
-    <ul>
-      {
-        featured.map(({ slug, entry: { data } }) => (
-          <li>
-            <a href={localizeUrl(`/work/${slug}/`, lang)}>
-              <span class="name">{data.title}</span>
-              <span class="meta mono">
-                {data.categories[0]}
-                {data.date && ` · ${data.date.getFullYear()}`}
-              </span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-    <div class="ctas">
-      <a href={localizeUrl("/work/", lang)}>{tr("home.allWork")}</a>
-      <a href={localizeUrl("/contact/", lang)}>{tr("home.contact")}</a>
+  <section class="container cols">
+    <div class="col">
+      <h2 class="mono">{tr("nav.articles")}</h2>
+      <ul>
+        {
+          articles.map(({ slug, entry: { data } }) => (
+            <li>
+              <a href={localizeUrl(`/articles/${slug}/`, lang)}>
+                <span class="name">{data.title}</span>
+                <span class="meta mono">{fmt.format(data.date)}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="ctas">
+        <a href={localizeUrl("/articles/", lang)}>→ {tr("nav.articles")}</a>
+      </div>
+    </div>
+
+    <div class="col">
+      <h2 class="mono">{tr("home.featured")}</h2>
+      <ul>
+        {
+          featured.map(({ slug, entry: { data } }) => (
+            <li>
+              <a href={localizeUrl(`/work/${slug}/`, lang)}>
+                <span class="name work-name">{data.title}</span>
+                <span class="meta mono">
+                  {data.categories[0]}
+                  {data.date && ` · ${data.date.getFullYear()}`}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="ctas">
+        <a href={localizeUrl("/work/", lang)}>{tr("home.allWork")}</a>
+        <a href={localizeUrl("/contact/", lang)}>{tr("home.contact")}</a>
+      </div>
     </div>
   </section>
 </SiteLayout>
 
 <style>
   .mono { font-family: var(--font-mono); }
-  .hero { padding: 80px 24px 40px; }
+
+  .hero {
+    position: relative;
+    background:
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--bg) 55%, transparent) 0%,
+        color-mix(in srgb, var(--bg) 78%, transparent) 60%,
+        var(--bg) 100%
+      ),
+      url("/media/hero-bg.jpg") center 35% / cover no-repeat;
+  }
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+    padding-top: 88px;
+    padding-bottom: 72px;
+  }
   .eyebrow {
     font-size: 11.5px;
     letter-spacing: 0.18em;
@@ -67,10 +125,25 @@ const featured = localizedEntries(all, lang)
     margin: 12px 0 18px;
   }
   h1 em { font-style: normal; color: var(--primary); }
-  .lede { color: var(--muted); max-width: 52ch; font-size: 1.15rem; }
+  .lede { color: var(--muted); max-width: 46ch; font-size: 1.15rem; }
+  .portrait {
+    flex: none;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 32px color-mix(in srgb, var(--bg) 60%, transparent);
+  }
 
-  .featured { padding-bottom: 96px; }
-  .featured h2 {
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    padding-top: 48px;
+    padding-bottom: 96px;
+  }
+  .col h2 {
     font-size: 11.5px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -78,20 +151,27 @@ const featured = localizedEntries(all, lang)
     font-weight: 400;
     margin-bottom: 8px;
   }
-  .featured ul { list-style: none; margin: 0; padding: 0; }
-  .featured li { border-bottom: 1px dotted var(--border-soft); }
-  .featured a {
+  .col ul { list-style: none; margin: 0; padding: 0; }
+  .col li { border-bottom: 1px dotted var(--border-soft); }
+  .col a {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: 16px;
-    padding: 14px 0;
+    padding: 13px 0;
     color: var(--text);
   }
-  .featured a:hover { text-decoration: none; }
-  .featured a:hover .name { color: var(--primary); }
-  .featured .name { font-size: 1.25rem; font-weight: 400; }
-  .featured .meta { font-size: 11px; color: var(--dim); letter-spacing: 0.08em; white-space: nowrap; }
-  .ctas { display: flex; gap: 32px; margin-top: 24px; }
-  .ctas a { font-size: 0.95rem; }
+  .col a:hover { text-decoration: none; }
+  .col a:hover .name { color: var(--primary); }
+  .name { font-size: 1.05rem; font-weight: 400; }
+  .work-name { text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.98rem; }
+  .meta { font-size: 11px; color: var(--dim); letter-spacing: 0.08em; white-space: nowrap; }
+  .ctas { display: flex; gap: 28px; margin-top: 20px; }
+  .ctas a { font-size: 0.92rem; }
+
+  @media (max-width: 720px) {
+    .hero-inner { flex-direction: column-reverse; align-items: flex-start; gap: 24px; }
+    .portrait { width: 128px; height: 128px; }
+    .cols { grid-template-columns: 1fr; gap: 48px; }
+  }
 </style>

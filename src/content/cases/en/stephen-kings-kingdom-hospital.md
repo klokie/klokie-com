@@ -5,6 +5,9 @@ location: "New York"
 categories: [publishing, streaming-media]
 role: "Senior Full-stack Engineer"
 summary: "This spooky promo site incorporates an artificially-intelligent chatbot and engaging sound design to explore the haunted hospital adapted from the 13-part ABC series by Stephen King"
+image: "/media/stephen-kings-kingdom-hospital.jpg"
+imageFit: "cover"
+imageAlt: "Stephen King's Kingdom Hospital"
 featured: true
 draft: false
 generated: true

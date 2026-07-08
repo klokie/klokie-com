@@ -150,7 +150,10 @@ const LEGEND: [string, string][] = [
                       {data.date && <> · {fmtYears(data)}</>}
                     </div>
                   </div>
-                  <a class="thumb mono" href={localizeUrl(`/work/${slug}/`, lang)}>
+                  <a
+                    class:list={["thumb", "mono", data.imageFit === "contain" && "contain"]}
+                    href={localizeUrl(`/work/${slug}/`, lang)}
+                  >
                     {data.image ? (
                       <img src={data.image} alt={data.imageAlt ?? data.title} loading="lazy" />
                     ) : (
@@ -323,7 +326,13 @@ const LEGEND: [string, string][] = [
     margin-bottom: 6px;
   }
   .feature .kicker .tag { color: var(--primary); }
-  .feature h3 { font-size: 1.7rem; font-weight: 400; letter-spacing: -0.01em; margin-bottom: 6px; }
+  .feature h3 {
+    font-size: 1.55rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
   .feature h3 a { color: var(--text); }
   .feature h3 a:hover { color: var(--primary); text-decoration: none; }
   .feature p { color: var(--muted); font-size: 0.95rem; max-width: 56ch; }
@@ -343,6 +352,8 @@ const LEGEND: [string, string][] = [
   }
   .thumb:hover { text-decoration: none; border-color: var(--primary); }
   .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .thumb.contain { padding: 20px; }
+  .thumb.contain img { object-fit: contain; }
 
   [data-entry].hide,
   .year-block.hide { display: none; }

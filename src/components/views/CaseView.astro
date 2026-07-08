@@ -25,14 +25,49 @@ const years = data.date
   <article class="container">
     <a class="back mono" href={localizeUrl("/work/", lang)}>{tr("work.back")}</a>
     <div class="kicker mono">
-      {tr("work.featured")}{data.categories.map((c) => ` · ${c}`).join("")}
+      <a href={localizeUrl("/work/#featured", lang)}>{tr("work.featured")}</a>
+      {
+        data.categories.map((c) => (
+          <>
+            {" · "}
+            <a href={localizeUrl(`/work/#${encodeURIComponent(c)}`, lang)}>{c}</a>
+          </>
+        ))
+      }
     </div>
     <h1>{data.title}</h1>
     <p class="summary">{data.summary}</p>
     <div class="meta mono">
-      {data.role && <span>{data.role.toUpperCase()}</span>}
-      {data.location && <span> · {data.location.toUpperCase()}</span>}
-      {years && <span> · {years}</span>}
+      {
+        data.role &&
+          data.role.split(" / ").map((r, i) => (
+            <>
+              {i > 0 && " / "}
+              <a href={localizeUrl(`/work/#${encodeURIComponent(r.toLowerCase())}`, lang)}>
+                {r.toUpperCase()}
+              </a>
+            </>
+          ))
+      }
+      {
+        data.location &&
+          data.location.split(",").map((l) => (
+            <>
+              {" · "}
+              <a href={localizeUrl(`/work/#${encodeURIComponent(l.trim().toLowerCase())}`, lang)}>
+                {l.trim().toUpperCase()}
+              </a>
+            </>
+          ))
+      }
+      {
+        years && (
+          <>
+            {" · "}
+            <a href={localizeUrl(`/work/#${data.date!.getFullYear()}`, lang)}>{years}</a>
+          </>
+        )
+      }
       {
         data.url && (
           <span>
@@ -44,7 +79,15 @@ const years = data.date
         )
       }
     </div>
-    {data.image && <img class="cover" src={data.image} alt={data.imageAlt ?? data.title} />}
+    {
+      data.image && (
+        <img
+          class:list={["cover", data.imageFit === "contain" && "contain"]}
+          src={data.image}
+          alt={data.imageAlt ?? data.title}
+        />
+      )
+    }
     <div class="prose">
       <Content />
     </div>
@@ -71,19 +114,29 @@ const years = data.date
     margin-bottom: 10px;
   }
   h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
     font-weight: 300;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
     line-height: 1.05;
     margin-bottom: 16px;
   }
   .summary { color: var(--muted); font-size: 1.15rem; max-width: 56ch; }
   .meta { font-size: 11px; color: var(--dim); letter-spacing: 0.08em; margin: 14px 0 32px; }
+  .meta a, .kicker a { color: inherit; border-bottom: 1px dotted var(--dim); }
+  .meta a:hover, .kicker a:hover { color: var(--primary); border-bottom-color: var(--primary); text-decoration: none; }
+  .kicker a { color: var(--primary); border-bottom-color: transparent; }
   .cover {
     width: 100%;
     border-radius: var(--radius-card);
     border: 1px solid var(--border);
     margin-bottom: 32px;
+  }
+  .cover.contain {
+    background: var(--surface);
+    object-fit: contain;
+    padding: 32px;
+    max-height: 320px;
   }
   .prose :global(p) { font-size: 1.02rem; line-height: 1.65; margin-bottom: 1.2em; }
   .prose :global(h2),
