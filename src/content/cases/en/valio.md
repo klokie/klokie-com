@@ -6,7 +6,7 @@ location: "Stockholm"
 categories: [cms, branding]
 role: "Senior Full-stack Engineer"
 summary: "Transformed Valio's website by enhancing user engagement through personalized campaigns, optimizing performance with advanced caching and database tuning, and ensuring robust security with regular updates and custom solutions. Integrated CRM, transaction gateways, and social media for a seamless user experience."
-image: "https://media.klokie.com/cases/valio.png"
+image: "https://media.klokie.com/cases/valio.png?v=2"
 imageFit: "contain"
 imageAlt: "Valio"
 featured: true

@@ -6,7 +6,7 @@ location: "Stockholm"
 categories: [sustainability, logistics]
 role: "Product Owner / Senior Back-end Engineer"
 summary: "Elain specializes in logistics CO₂ tracking, automatically providing precise emission data per order, recipient, and carrier. By replacing estimates and assumptions with data directly from the source, we empower informed, data-driven decisions for effective decarbonization and robust sustainability reporting."
-image: "https://media.klokie.com/cases/scania-elain-advanced.svg"
+image: "https://media.klokie.com/cases/scania-elain-advanced.svg?v=2"
 imageFit: "contain"
 imageAlt: "Scania — Elain Advanced"
 featured: true

@@ -6,7 +6,7 @@ location: "Stockholm"
 categories: [streaming-media]
 role: "Senior Full-stack Engineer / Product Owner"
 summary: "TV4, Telia, and CMore's collaboration combines TV4's media content with Telia's technology and network, and CMore's streaming services to create a comprehensive digital entertainment platform in Sweden. This strategic partnership enhances the digital entertainment experience by integrating content, technology, and distribution."
-image: "https://media.klokie.com/cases/tv4-telia-cmore.png"
+image: "https://media.klokie.com/cases/tv4-telia-cmore.png?v=2"
 imageFit: "cover"
 imageAlt: "TV4 / Telia / C More"
 featured: true
