@@ -6,6 +6,7 @@ export const ui = {
   en: {
     "nav.work": "Work",
     "nav.articles": "Articles",
+    "nav.music": "Music",
     "nav.about": "About",
     "nav.contact": "Contact",
 
@@ -38,6 +39,11 @@ export const ui = {
     "articles.empty": "More articles are on their way over from the archive.",
     "articles.back": "← All articles",
 
+    "music.title": "Music",
+    "music.metaDesc": "Bands and music projects, 1988 → today: Arbetarorkestern, Howler Monkey Gods, Moveable, and the long tail.",
+    "music.present": "present",
+    "music.placeholder": "More on this one soon.",
+
     "notfound.title": "Page not found",
     "notfound.body": "That page doesn't exist — maybe it never shipped.",
     "notfound.home": "→ Home",
@@ -45,6 +51,7 @@ export const ui = {
   sv: {
     "nav.work": "Arbete",
     "nav.articles": "Artiklar",
+    "nav.music": "Musik",
     "nav.about": "Om",
     "nav.contact": "Kontakt",
 
@@ -76,6 +83,11 @@ export const ui = {
     "articles.metaDesc": "Artiklar och anteckningar från 25+ år av webbpublicering.",
     "articles.empty": "Fler artiklar är på väg över från arkivet.",
     "articles.back": "← Alla artiklar",
+
+    "music.title": "Musik",
+    "music.metaDesc": "Band och musikprojekt, 1988 → idag: Arbetarorkestern, Howler Monkey Gods, Moveable med flera.",
+    "music.present": "nu",
+    "music.placeholder": "Mer om detta snart.",
 
     "notfound.title": "Sidan finns inte",
     "notfound.body": "Den här sidan finns inte — den kanske aldrig levererades.",

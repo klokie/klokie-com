@@ -43,4 +43,20 @@ const articles = defineCollection({
   }),
 });
 
-export const collections = { cases, pages, articles };
+const music = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/music" }),
+  schema: z.object({
+    title: z.string(),
+    start: z.number().optional(),
+    end: z.number().optional(),
+    role: z.string().optional(),
+    summary: z.string().optional(),
+    links: z.array(z.object({ label: z.string(), url: z.string().url() })).default([]),
+    bandcampAlbums: z
+      .array(z.object({ title: z.string(), id: z.string(), url: z.string().url() }))
+      .default([]),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { cases, pages, articles, music };

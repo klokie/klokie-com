@@ -1,0 +1,185 @@
+---
+import { getCollection, render } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import { localizedEntries, type Locale } from "@/i18n";
+import { t } from "@/i18n/ui";
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const tr = t(lang);
+
+const all = await getCollection("music", ({ data }) => !data.draft);
+// reverse-chron by most recent activity: ongoing (start, no end) first,
+// then by end year, then start; undated (timeless/solo) last
+const key = (d: (typeof all)[number]["data"]) =>
+  d.start && !d.end ? 9999 : (d.end ?? d.start ?? 0);
+const projects = localizedEntries(all, lang).sort(
+  (a, b) =>
+    key(b.entry.data) - key(a.entry.data) ||
+    (b.entry.data.start ?? 0) - (a.entry.data.start ?? 0),
+);
+
+// pre-render bodies; entries with a body get an expanded section
+const rendered = await Promise.all(
+  projects.map(async ({ slug, entry }) => {
+    const hasBody = entry.body && entry.body.trim().length > 0;
+    const { Content } = await render(entry);
+    return { slug, entry, Content, hasBody };
+  }),
+);
+
+const years = (d: (typeof all)[number]["data"]) =>
+  d.start
+    ? d.end && d.end !== d.start
+      ? `${d.start}–${d.end}`
+      : d.end
+        ? String(d.start)
+        : `${d.start} → ${tr("music.present")}`
+    : "";
+
+const firstYear = Math.min(...all.map((e) => e.data.start ?? 9999));
+---
+
+<SiteLayout lang={lang} title={tr("music.title")} description={tr("music.metaDesc")}>
+  <section class="hero container">
+    <div class="eyebrow mono">{tr("music.title")} · {firstYear} → {new Date().getFullYear()}</div>
+    <h1>{tr("music.title")}<em>.</em></h1>
+    <p class="lede">{tr("music.metaDesc")}</p>
+  </section>
+
+  <div class="ledger container">
+    {
+      rendered.map(({ entry: { data }, Content, hasBody }) =>
+        hasBody || data.bandcampAlbums.length ? (
+          <section class="project">
+            <div class="year mono">{years(data)}</div>
+            <div class="body">
+              <h2>{data.title}</h2>
+              {data.summary && <p class="summary">{data.summary}</p>}
+              <div class="meta mono">
+                {data.role && <span>{data.role.toUpperCase()}</span>}
+                {data.links.map((l) => (
+                  <span>
+                    {" · "}
+                    <a href={l.url} target="_blank" rel="noopener noreferrer">
+                      {l.label.toUpperCase()} ↗
+                    </a>
+                  </span>
+                ))}
+              </div>
+              <div class="prose">
+                <Content />
+              </div>
+              {data.bandcampAlbums.length > 0 && (
+                <div class="players">
+                  {data.bandcampAlbums.map((a) => (
+                    <iframe
+                      style="border: 0; width: 100%; height: 120px;"
+                      src={`https://bandcamp.com/EmbeddedPlayer/album=${a.id}/size=large/bgcol=151520/linkcol=fd5b17/tracklist=false/artwork=small/transparent=true/`}
+                      seamless
+                      loading="lazy"
+                      title={`${data.title} — ${a.title}`}
+                    >
+                      <a href={a.url}>{a.title}</a>
+                    </iframe>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+        ) : (
+          <div class="row">
+            <div class="year mono">{years(data) || "····"}</div>
+            <div class="row-main">
+              <span class="name">{data.title}</span>
+              {data.summary && <span class="one-liner">{data.summary}</span>}
+              {data.links.map((l) => (
+                <a class="loc mono" href={l.url} target="_blank" rel="noopener noreferrer">
+                  {l.label.toUpperCase()} ↗
+                </a>
+              ))}
+            </div>
+          </div>
+        ),
+      )
+    }
+  </div>
+</SiteLayout>
+
+<style>
+  .mono { font-family: var(--font-mono); }
+  .hero { padding: 64px 24px 24px; }
+  .eyebrow {
+    font-size: 11.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 4.25rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    margin: 12px 0 16px;
+  }
+  h1 em { font-style: normal; color: var(--primary); }
+  .lede { color: var(--muted); max-width: 52ch; font-size: 1.1rem; }
+
+  .ledger { padding-top: 16px; padding-bottom: 96px; }
+  .project,
+  .row {
+    display: grid;
+    grid-template-columns: 118px 1fr;
+    gap: 0 24px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .year {
+    font-size: 13.5px;
+    color: var(--dim);
+    padding-top: 22px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .project .body { padding: 18px 0 28px; min-width: 0; }
+  .project h2 {
+    font-size: 1.7rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .summary { color: var(--muted); font-size: 0.98rem; max-width: 58ch; }
+  .meta { font-size: 11px; color: var(--dim); letter-spacing: 0.08em; margin-top: 8px; }
+  .meta a { color: inherit; border-bottom: 1px dotted var(--dim); }
+  .meta a:hover { color: var(--primary); border-bottom-color: var(--primary); text-decoration: none; }
+  .prose { margin-top: 14px; }
+  .prose :global(p) { font-size: 0.98rem; line-height: 1.65; margin-bottom: 1em; color: var(--text); max-width: 62ch; }
+  .players { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; max-width: 560px; }
+
+  .row .row-main {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 13px 0;
+    min-width: 0;
+  }
+  .row .name { font-weight: 400; font-size: 1.05rem; white-space: nowrap; }
+  .one-liner {
+    color: var(--dim);
+    font-size: 0.85rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .loc { font-size: 11px; letter-spacing: 0.06em; margin-left: auto; white-space: nowrap; color: var(--dim); }
+  .loc:hover { color: var(--primary); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .project,
+    .row { grid-template-columns: 1fr; }
+    .year { padding: 14px 0 0; color: var(--primary); }
+    .one-liner { display: none; }
+  }
+</style>

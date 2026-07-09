@@ -34,7 +34,7 @@ const personJsonLd = {
   url: siteConfig.url,
   image: new URL("/media/klokie.jpg", siteConfig.url).href,
   address: { "@type": "PostalAddress", addressLocality: "Stockholm", addressCountry: "SE" },
-  sameAs: Object.values(siteConfig.social),
+  sameAs: siteConfig.sameAs,
 };
 ---
 

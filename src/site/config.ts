@@ -22,8 +22,13 @@ export const siteConfig = {
   social: {
     linkedin: "https://www.linkedin.com/in/klokie/",
     github: "https://github.com/klokie",
-    soundcloud: "https://soundcloud.com/klokie",
   } as Record<string, string>,
+  // Person JSON-LD sameAs — superset of the footer links
+  sameAs: [
+    "https://www.linkedin.com/in/klokie/",
+    "https://github.com/klokie",
+    "https://soundcloud.com/klokie",
+  ],
   paths: {
     work: "/work",
   },
