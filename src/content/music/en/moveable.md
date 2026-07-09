@@ -18,4 +18,4 @@ neighbors Cathode (Polterchrist Records), a third single on Sandbox Records
 (1999), and a full-length recorded with Rick Pelletier at the Parlour in
 Pawtucket, RI. Played the Continental, Coney Island High, Luna Lounge,
 Brownies, the Middle East, the Rat, and most respectable (and otherwise)
-rooms in the Northeast. *Bandcamp reissue in progress.*
+rooms in the Northeast. _Bandcamp reissue in progress._

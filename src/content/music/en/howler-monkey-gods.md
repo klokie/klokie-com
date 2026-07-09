@@ -31,6 +31,6 @@ Chains, Mastodon, and Queens of the Stone Age.
 The band was Tompa (vocals, guitar), Mogge (guitar, keys), Robban (drums —
 founding member of pioneering Swedish black metal band Mefisto), and Klokie
 (bass). Between 2009 and 2014, HMG self-recorded and released four EPs from
-their Stockholm studio — including *Roadside Sleeping*, featuring a duet
+their Stockholm studio — including _Roadside Sleeping_, featuring a duet
 with Swedish singer and actress Regina Lund. All four are on
 [Bandcamp](https://howlermonkeygods.bandcamp.com).
