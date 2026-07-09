@@ -63,14 +63,14 @@ const fmtYears = (data: CaseData) => {
   return e && e !== s ? `${s}–${e}` : String(s);
 };
 
-const LEGEND: [string, string][] = [
-  ["music", "var(--t-green)"],
-  ["e-commerce", "var(--t-yellow)"],
-  ["streaming", "var(--t-blue)"],
-  ["fashion-art", "var(--t-violet)"],
-  ["cms", "var(--t-indigo)"],
-  ["publishing", "var(--t-red)"],
-  ["featured", "var(--t-orange)"],
+const LEGEND: [string, string, string][] = [
+  ["music", "music", "var(--t-green)"],
+  ["e-commerce", "e-commerce", "var(--t-yellow)"],
+  ["streaming", "streaming", "var(--t-blue)"],
+  ["fashion-art", "fashion & art", "var(--t-violet)"],
+  ["cms", "cms & platforms", "var(--t-indigo)"],
+  ["publishing", "publishing", "var(--t-red)"],
+  ["featured", "featured", "var(--t-orange)"],
 ];
 ---
 
@@ -191,10 +191,10 @@ const LEGEND: [string, string][] = [
 
   <div class="legend container mono">
     {
-      LEGEND.map(([label, color]) => (
-        <button class="tag" data-tag={label}>
+      LEGEND.map(([tag, label, color]) => (
+        <button class="tag" data-tag={tag}>
           <span class="chip" style={`background:${color}`} />
-          {label === "cms" ? "cms & platforms" : label.replace("-", " & ")}
+          {label}
         </button>
       ))
     }
