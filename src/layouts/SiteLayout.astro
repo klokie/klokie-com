@@ -166,6 +166,39 @@ const nav = [
     padding: 18px 24px 22px !important;
     border-top: none !important;
   }
+
+  /* mobile: fit the nav on one row + tighten vertical rhythm */
+  @media (max-width: 640px) {
+    .site-header {
+      padding: 16px !important;
+      gap: 10px 12px !important;
+    }
+    .site-header nav {
+      gap: 8px 12px !important;
+    }
+    .site-header nav ul {
+      gap: 11px !important;
+      flex-wrap: nowrap !important;
+    }
+    .site-header nav a {
+      font-size: 11px !important;
+      letter-spacing: 0.05em !important;
+    }
+    #theme-toggle {
+      margin-left: 0 !important;
+    }
+    .site-footer {
+      padding: 16px 16px 20px !important;
+    }
+    /* tighten header→content and hero→ledger gaps */
+    .hero {
+      padding-top: 32px !important;
+      padding-bottom: 8px !important;
+    }
+    .ledger {
+      padding-top: 6px !important;
+    }
+  }
 </style>
 
 <style>
