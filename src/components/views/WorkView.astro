@@ -94,11 +94,8 @@ const LEGEND: [string, string, string][] = [
       {span}
       {tr("work.title.pre")}<br />{tr("work.title.post")}<em>.</em>
     </h1>
-    <p class="lede">
-      {cases.length}
-      {tr("work.projects")}
-      {tr("work.lede.tail")}
-    </p>
+    <p class="lede">{cases.length} {tr("work.projects")}</p>
+    <p class="hint mono">{tr("work.hint")}</p>
   </section>
 
   <div id="filterbar" class="container mono idle">
@@ -266,6 +263,13 @@ const LEGEND: [string, string, string][] = [
   }
   h1 em { font-style: normal; color: var(--primary); }
   .lede { color: var(--muted); max-width: 52ch; font-size: 1.1rem; }
+  .hint {
+    color: var(--dim);
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    max-width: 60ch;
+    margin-top: 18px;
+  }
 
   .tag {
     cursor: pointer;

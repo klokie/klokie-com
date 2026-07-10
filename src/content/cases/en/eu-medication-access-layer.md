@@ -16,8 +16,5 @@ A first-version website and waitlist for a service that helps people in Sweden
 get hold of already-prescribed medication from licensed pharmacies elsewhere in
 the EU — when it's unavailable, back-ordered, or simply too expensive at home.
 
-Built on the standard stack: Next.js on Cloudflare Pages, a Turnstile-gated
-waitlist writing to Supabase behind a service-role edge route (row-level
-security verified so nothing leaks), PostHog with PHI masking, and a
-path-preserving canonical-host setup. Health data, so the privacy bar is high
-from day one.
+Built on the standard stack: Next.js on Cloudflare Pages, a waitlist backed by
+Supabase, and PostHog for analytics.

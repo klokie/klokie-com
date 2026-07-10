@@ -25,7 +25,8 @@ export const ui = {
     "work.title.post": "of shipped work",
     "work.lede.tail":
       "A ledger, not a highlight reel — click any tag, place, role, or year to filter it.",
-    "work.projects": "projects across New York, Paris, London, Barcelona, Tokyo, and Stockholm.",
+    "work.projects": "projects from New York, Paris, London, Barcelona, Tokyo, and Stockholm.",
+    "work.hint": "Click any tag, place, role, or year to show related projects. Click a project to see more.",
     "work.clear": "clear ×",
     "work.project": "project",
     "work.projects.short": "projects",
@@ -40,7 +41,8 @@ export const ui = {
     "articles.back": "← All articles",
 
     "music.title": "Music",
-    "music.metaDesc": "Bands and music projects, 1988 → today: Arbetarorkestern, Howler Monkey Gods, Moveable, and the long tail.",
+    "music.metaDesc": "Bands and music projects, 1988 → today: Arbetarorkestern, Howler Monkey Gods, Moveable, and many other international music ensembles.",
+    "music.hint": "Click a section to expand, click a genre to filter by it.",
     "music.present": "present",
     "music.placeholder": "More on this one soon.",
 
@@ -71,7 +73,8 @@ export const ui = {
     "work.title.post": "av levererat arbete",
     "work.lede.tail":
       "En liggare, inte en höjdpunktsrulle — klicka på en tagg, plats, roll eller ett år för att filtrera.",
-    "work.projects": "projekt i New York, Paris, London, Barcelona, Tokyo och Stockholm.",
+    "work.projects": "projekt från New York, Paris, London, Barcelona, Tokyo och Stockholm.",
+    "work.hint": "Klicka på en tagg, plats, roll eller ett år för att visa relaterade projekt. Klicka på ett projekt för att se mer.",
     "work.clear": "rensa ×",
     "work.project": "projekt",
     "work.projects.short": "projekt",
@@ -86,7 +89,8 @@ export const ui = {
     "articles.back": "← Alla artiklar",
 
     "music.title": "Musik",
-    "music.metaDesc": "Band och musikprojekt, 1988 → idag: Arbetarorkestern, Howler Monkey Gods, Moveable med flera.",
+    "music.metaDesc": "Band och musikprojekt, 1988 → idag: Arbetarorkestern, Howler Monkey Gods, Moveable och många andra internationella musikensembler.",
+    "music.hint": "Klicka på ett projekt för att expandera, klicka på en genre för att filtrera.",
     "music.present": "nu",
     "music.placeholder": "Mer om detta snart.",
 

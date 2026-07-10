@@ -1,5 +1,5 @@
 ---
-title: "Drine / Mutual Hate Society"
+title: "Drine / Mutual Hate Society / Flowers of Evil"
 start: 1989
 end: 1993
 role: "Guitar"
