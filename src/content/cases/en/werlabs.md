@@ -1,6 +1,7 @@
 ---
 title: "Werlabs"
 date: "2024-08-15"
+ongoing: true
 location: "Stockholm"
 categories: [health, medtech]
 role: "Senior Full-stack Engineer"

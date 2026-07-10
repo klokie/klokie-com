@@ -1,6 +1,7 @@
 ---
 title: "Klokie (solo)"
 genre: "Solo · instrumental · electronic"
+featured: true
 summary: "Solo recordings, production, and scoring."
 links:
   - label: "SoundCloud"

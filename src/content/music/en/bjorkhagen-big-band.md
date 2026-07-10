@@ -2,7 +2,7 @@
 title: "Björkhagen Big Band"
 start: 2017
 end: 2018
-role: "Guitar"
+role: "Guitar, Bass"
 genre: "Jazz · big band"
 summary: "Stockholm community big band — jazz standards and swing arrangements for a full horn section, rhythm, and guitar."
 links:

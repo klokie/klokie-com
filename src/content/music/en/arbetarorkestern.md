@@ -1,7 +1,8 @@
 ---
 title: "Arbetarorkestern"
 start: 2025
-role: "Band member"
+role: "Bass"
+featured: true
 genre: "World · collective"
 summary: "Collective world-music ensemble from Stockholm — West African grooves, southern African choral traditions, roots reggae, and Swedish folk song on one stage."
 links:

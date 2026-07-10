@@ -2,7 +2,8 @@
 title: "Howler Monkey Gods"
 start: 2009
 end: 2014
-role: "Bass"
+role: "Bass, lyrics, co-producer"
+featured: true
 genre: "Emo · melodic metal · speed metal · grunge"
 summary: "Diesel-powered melodic metal from Stockholm — grunge, black metal, and prog, somewhere between Alice in Chains, Mastodon, and Queens of the Stone Age."
 links:
