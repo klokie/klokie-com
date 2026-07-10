@@ -3,11 +3,7 @@ title: "Moveable"
 start: 1993
 end: 2000
 role: "Guitar"
-<<<<<<< Updated upstream
-genre: "Noise rock · post-hardcore"
-=======
 genre: "Math rock · post-hardcore · indie rock"
->>>>>>> Stashed changes
 aka: "Previously The J. Edgars (1995–96), Merrick (1994–95), and Cornelius [the Younger] (1993–94)"
 summary: "Loud rock trio, Boston → New York City — abrasive yet melodic, filed somewhere near the Fall, Gang of Four, Fugazi, Slint, and the Jesus Lizard."
 draft: false
