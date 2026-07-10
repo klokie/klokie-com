@@ -37,5 +37,5 @@ that hide their underlying complexity and build on web standards and open
 source.
 
 See [things I've worked on](/work/) for the full portfolio, my
-[CV](/cv/) for the formal version, [articles](/articles/) for the writing —
-or just [get in touch](/contact/).
+[CV](/cv/) for the formal version, [articles](/articles/) for the writing,
+[what I use](/uses/) to build — or just [get in touch](/contact/).
