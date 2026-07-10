@@ -9,5 +9,5 @@ draft: false
 ---
 
 Solo work spans music for solo guitar and piano, vocal pieces, and electronic
-production — plus scoring, including the trailer for the documentary *Gringo
-Trails*. An ongoing home for whatever doesn't belong to a band.
+production — plus scoring, including the trailer for the documentary _Gringo
+Trails_. An ongoing home for whatever doesn't belong to a band.
