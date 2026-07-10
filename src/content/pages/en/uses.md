@@ -8,7 +8,7 @@ draft: false
 # Uses
 
 What I build and make music with. A living page — inspired by
-[uses.tech](https://uses.tech). _(First draft — refine the specifics.)_
+[uses.tech](https://uses.tech).
 
 ## Editor & shell
 
@@ -44,7 +44,7 @@ favorites, not the whole story. See [things I've worked on](/work/).
 ## Music
 
 - **Bass** and **guitar** — see [things I've played on](/music/).
-- EBS overdrive on the bass side; a rotating cast of amps and pedals.
+- a rotating cast of amps and pedals.
 
 ---
 
