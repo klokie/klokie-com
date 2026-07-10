@@ -2,7 +2,7 @@
 title: "Haptic Vision (Promobilia / KTH)"
 date: "2025-01-01"
 location: "Stockholm"
-categories: [health]
+categories: [health, ai]
 role: "Developer"
 summary: "Assistive prototype that turns environmental sounds into haptic and visual cues in under half a second, for people with hearing loss."
 featured: false
