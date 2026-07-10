@@ -67,6 +67,7 @@ const fmtYears = (data: CaseData) => {
   const s = yearOf(data.date);
   const e = yearOf(data.endDate);
   if (!s) return "";
+  if (data.ongoing) return `${s} → ${tr("music.present")}`;
   return e && e !== s ? `${s}–${e}` : String(s);
 };
 

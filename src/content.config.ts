@@ -8,6 +8,7 @@ const cases = defineCollection({
     title: z.string(),
     date: z.coerce.date().optional(),
     endDate: z.coerce.date().optional(),
+    ongoing: z.boolean().default(false),
     location: z.string().optional(),
     categories: z.array(z.string()).default([]),
     role: z.string().optional(),
@@ -58,6 +59,7 @@ const music = defineCollection({
       .array(z.object({ title: z.string(), id: z.string(), url: z.string().url() }))
       .default([]),
     soundcloudPlaylist: z.string().optional(),
+    featured: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),
 });

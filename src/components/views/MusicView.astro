@@ -34,10 +34,7 @@ const genresOf = (g?: string) =>
 
 type MusicData = (typeof all)[number]["data"];
 const tagsFor = (d: MusicData) =>
-  [
-    ...genresOf(d.genre).map((x) => x.toLowerCase()),
-    ...(d.role ? [d.role.toLowerCase()] : []),
-  ].join(",");
+  genresOf(d.genre).map((x) => x.toLowerCase()).join(",");
 
 const years = (d: MusicData) =>
   d.start
@@ -71,8 +68,8 @@ const firstYear = Math.min(...all.map((e) => e.data.start ?? 9999));
   >
     {
       rendered.map(({ entry: { data }, Content, hasBody }) => (
-        <div class="row" data-entry data-tags={tagsFor(data)}>
-          <div class="row-header" role="button" tabindex="0" aria-expanded="false">
+        <div class:list={["row", data.featured && "open"]} data-entry data-tags={tagsFor(data)}>
+          <div class="row-header" role="button" tabindex="0" aria-expanded={data.featured ? "true" : "false"}>
             <span class="year mono">{years(data) || "····"}</span>
             <span class="name">{data.title}</span>
             <span class="rowtags mono">
