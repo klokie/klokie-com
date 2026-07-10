@@ -6,6 +6,8 @@ categories: [music]
 role: "Creator"
 summary: "Web app that generates the solfeggio frequencies in the browser — pure Web Audio API, no samples."
 url: "https://solfeggio.klokie.com"
+image: "https://media.klokie.com/cases/solfeggio-player.png?v=2"
+imageAlt: "Solfeggio Frequency Player"
 featured: false
 draft: false
 ---
