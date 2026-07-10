@@ -52,14 +52,14 @@ const firstYear = Math.min(...all.map((e) => e.data.start ?? 9999));
   <div class="ledger container">
     {
       rendered.map(({ entry: { data }, Content, hasBody }) =>
-        hasBody || data.bandcampAlbums.length ? (
+        hasBody || data.bandcampAlbums.length || data.soundcloudPlaylist ? (
           <section class="project">
             <div class="year mono">{years(data)}</div>
             <div class="body">
               <h2>{data.title}</h2>
-              {data.summary && <p class="summary">{data.summary}</p>}
               <div class="meta mono">
-                {data.role && <span>{data.role.toUpperCase()}</span>}
+                {data.genre && <span class="genre">{data.genre}</span>}
+                {data.role && <span> · {data.role.toUpperCase()}</span>}
                 {data.links.map((l) => (
                   <span>
                     {" · "}
@@ -69,9 +69,13 @@ const firstYear = Math.min(...all.map((e) => e.data.start ?? 9999));
                   </span>
                 ))}
               </div>
-              <div class="prose">
-                <Content />
-              </div>
+              {data.summary && <p class="summary">{data.summary}</p>}
+              {data.aka && <p class="aka mono">{data.aka}</p>}
+              {hasBody && (
+                <div class="prose">
+                  <Content />
+                </div>
+              )}
               {data.bandcampAlbums.length > 0 && (
                 <div class="players">
                   {data.bandcampAlbums.map((a) => (
@@ -87,6 +91,19 @@ const firstYear = Math.min(...all.map((e) => e.data.start ?? 9999));
                   ))}
                 </div>
               )}
+              {data.soundcloudPlaylist && (
+                <div class="players">
+                  <iframe
+                    width="100%"
+                    height="300"
+                    scrolling="no"
+                    frameborder="no"
+                    loading="lazy"
+                    title={`${data.title} on SoundCloud`}
+                    src={`https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/${data.soundcloudPlaylist}&color=%23fd5b17&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false`}
+                  />
+                </div>
+              )}
             </div>
           </section>
         ) : (
@@ -94,6 +111,7 @@ const firstYear = Math.min(...all.map((e) => e.data.start ?? 9999));
             <div class="year mono">{years(data) || "····"}</div>
             <div class="row-main">
               <span class="name">{data.title}</span>
+              {data.genre && <span class="genre mono">{data.genre}</span>}
               {data.summary && <span class="one-liner">{data.summary}</span>}
               {data.links.map((l) => (
                 <a class="loc mono" href={l.url} target="_blank" rel="noopener noreferrer">
@@ -150,8 +168,10 @@ const firstYear = Math.min(...all.map((e) => e.data.start ?? 9999));
     text-transform: uppercase;
     margin-bottom: 6px;
   }
-  .summary { color: var(--muted); font-size: 0.98rem; max-width: 58ch; }
+  .summary { color: var(--muted); font-size: 0.98rem; max-width: 58ch; margin-top: 10px; }
+  .aka { color: var(--dim); font-size: 11px; letter-spacing: 0.04em; margin-top: 6px; max-width: 60ch; }
   .meta { font-size: 11px; color: var(--dim); letter-spacing: 0.08em; margin-top: 8px; }
+  .meta .genre { color: var(--primary); }
   .meta a { color: inherit; border-bottom: 1px dotted var(--dim); }
   .meta a:hover { color: var(--primary); border-bottom-color: var(--primary); text-decoration: none; }
   .prose { margin-top: 14px; }
@@ -166,6 +186,14 @@ const firstYear = Math.min(...all.map((e) => e.data.start ?? 9999));
     min-width: 0;
   }
   .row .name { font-weight: 400; font-size: 1.05rem; white-space: nowrap; }
+  .row .genre {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary);
+    white-space: nowrap;
+    flex: none;
+  }
   .one-liner {
     color: var(--dim);
     font-size: 0.85rem;

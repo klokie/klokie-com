@@ -44,8 +44,9 @@ export const ui = {
     "music.present": "present",
     "music.placeholder": "More on this one soon.",
 
-    "notfound.title": "Page not found",
-    "notfound.body": "That page doesn't exist — maybe it never shipped.",
+    "notfound.title": "Not found",
+    "notfound.body": "This page doesn't exist (or doesn't anymore). If you were looking for something specific, get in touch and I'll point you to it.",
+    "notfound.contact": "→ Contact me",
     "notfound.home": "→ Home",
   },
   sv: {
@@ -89,8 +90,9 @@ export const ui = {
     "music.present": "nu",
     "music.placeholder": "Mer om detta snart.",
 
-    "notfound.title": "Sidan finns inte",
-    "notfound.body": "Den här sidan finns inte — den kanske aldrig levererades.",
+    "notfound.title": "Hittades inte",
+    "notfound.body": "Den här sidan finns inte (eller inte längre). Letade du efter något särskilt? Hör av dig så pekar jag dig rätt.",
+    "notfound.contact": "→ Kontakta mig",
     "notfound.home": "→ Hem",
   },
 } as const;

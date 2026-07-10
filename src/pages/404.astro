@@ -6,15 +6,34 @@ const tr = t("en");
 
 <SiteLayout title={tr("notfound.title")}>
   <section class="container nf">
-    <h1>404<em>.</em></h1>
+    <div class="code mono">404 — {tr("notfound.title")}</div>
+    <h1>{tr("notfound.title")}<em>.</em></h1>
     <p>{tr("notfound.body")}</p>
-    <a href="/">{tr("notfound.home")}</a>
+    <div class="links">
+      <a href="/contact/">{tr("notfound.contact")}</a>
+      <a href="/">{tr("notfound.home")}</a>
+    </div>
   </section>
 </SiteLayout>
 
 <style>
-  .nf { padding: 96px 24px; }
-  h1 { font-size: 4rem; font-weight: 300; margin-bottom: 12px; }
+  .mono { font-family: var(--font-mono); }
+  .nf { padding: 96px 24px; max-width: 620px; }
+  .code {
+    font-size: 11.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 3.5rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
   h1 em { font-style: normal; color: var(--primary); }
-  p { color: var(--muted); margin-bottom: 24px; }
+  p { color: var(--muted); margin-bottom: 24px; max-width: 52ch; line-height: 1.6; }
+  .links { display: flex; gap: 28px; }
+  .links a { font-size: 0.95rem; }
 </style>

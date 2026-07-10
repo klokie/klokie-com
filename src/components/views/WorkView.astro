@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import { localizedEntries, localizeUrl, type Locale } from "@/i18n";
 import { t } from "@/i18n/ui";
@@ -12,6 +12,13 @@ const tr = t(lang);
 
 const all = await getCollection("cases", ({ data }) => !data.draft);
 const cases = localizedEntries(all, lang);
+
+// pre-render bodies so listed cases can expand to show them (keyed by slug)
+const bodies = new Map<string, { Content: any; hasBody: boolean }>();
+for (const { slug, entry } of cases) {
+  const { Content } = await render(entry);
+  bodies.set(slug, { Content, hasBody: !!entry.body && entry.body.trim().length > 0 });
+}
 
 const CHIP: Record<string, string> = {
   music: "var(--t-green)",
@@ -163,23 +170,62 @@ const LEGEND: [string, string, string][] = [
                 </div>
               ) : (
                 <div class="row" data-entry data-tags={tagsFor(data)}>
-                  <button
-                    class="chipbtn tag"
-                    data-tag={data.categories[0]}
-                    title={data.categories.join(", ") || undefined}
-                    disabled={!data.categories.length}
-                  >
-                    <span class="chip" style={`background:${chipColor(data.categories)}`} />
-                  </button>
-                  <span class="name">{data.title}</span>
-                  {data.location && (
+                  <div class="row-header" role="button" tabindex="0" aria-expanded="false">
                     <button
-                      class="loc tag mono"
-                      data-tag={data.location.split(",")[0].trim().toLowerCase()}
+                      class="chipbtn tag"
+                      data-tag={data.categories[0]}
+                      title={data.categories.join(", ") || undefined}
+                      disabled={!data.categories.length}
                     >
-                      {data.location.split(",")[0].trim().toUpperCase()}
+                      <span class="chip" style={`background:${chipColor(data.categories)}`} />
                     </button>
-                  )}
+                    <span class="name">{data.title}</span>
+                    <span class="rowtags mono">
+                      {data.categories.map((c) => (
+                        <button class="minitag tag" data-tag={c}>{c}</button>
+                      ))}
+                    </span>
+                    {data.location && (
+                      <button
+                        class="loc tag mono"
+                        data-tag={data.location.split(",")[0].trim().toLowerCase()}
+                      >
+                        {data.location.split(",")[0].trim().toUpperCase()}
+                      </button>
+                    )}
+                    <span class="chevron mono" aria-hidden="true">+</span>
+                  </div>
+                  <div class="row-detail">
+                    {data.summary && <p class="detail-summary">{data.summary}</p>}
+                    {
+                      bodies.get(slug)?.hasBody &&
+                        (() => {
+                          const Body = bodies.get(slug)!.Content;
+                          return (
+                            <div class="detail-prose">
+                              <Body />
+                            </div>
+                          );
+                        })()
+                    }
+                    {
+                      data.image && (
+                        <img
+                          class:list={["detail-img", data.imageFit === "contain" && "contain"]}
+                          src={data.image}
+                          alt={data.imageAlt ?? data.title}
+                          loading="lazy"
+                        />
+                      )
+                    }
+                    {
+                      data.url && (
+                        <a class="detail-visit mono" href={data.url} target="_blank" rel="noopener noreferrer">
+                          {tr("work.visit")}
+                        </a>
+                      )
+                    }
+                  </div>
                 </div>
               ),
             )}
@@ -290,21 +336,80 @@ const LEGEND: [string, string, string][] = [
     align-self: start;
   }
   .entries { padding: 8px 0 20px; min-width: 0; }
-  .row {
+  .row { border-bottom: 1px dotted var(--border-soft); }
+  .row:last-child { border-bottom: none; }
+  .row-header {
     display: flex;
     align-items: baseline;
     gap: 14px;
     padding: 9px 0;
-    border-bottom: 1px dotted var(--border-soft);
+    cursor: pointer;
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    color: inherit;
+    font: inherit;
   }
-  .row:last-child { border-bottom: none; }
+  .row-header:hover .name { color: var(--primary); }
   .row .name { font-weight: 400; font-size: 1.02rem; }
+  .rowtags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .minitag {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--dim);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 1px dotted transparent;
+  }
+  .minitag:hover, .minitag.on { color: var(--primary); border-bottom-color: var(--primary); }
   .row .loc {
     font-size: 11.5px;
     color: var(--dim);
     letter-spacing: 0.06em;
     margin-left: auto;
     white-space: nowrap;
+  }
+  .chevron {
+    color: var(--dim);
+    font-size: 14px;
+    flex: none;
+    transition: transform var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+  }
+  .row-header:hover .chevron { color: var(--primary); }
+  .row.open .chevron { transform: rotate(45deg); }
+  .row-detail {
+    display: none;
+    padding: 2px 0 18px 22px;
+    max-width: 62ch;
+  }
+  .row.open .row-detail { display: block; }
+  .detail-summary { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+  .detail-prose { margin-top: 10px; }
+  .detail-prose :global(p) { font-size: 0.95rem; line-height: 1.65; margin-bottom: 0.9em; color: var(--text); }
+  .detail-img {
+    margin-top: 14px;
+    max-width: 100%;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--border);
+  }
+  .detail-img.contain { background: #f5f3ed; padding: 16px; }
+  .detail-visit {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--primary);
   }
   .chip { width: 8px; height: 8px; border-radius: 2px; flex: none; display: inline-block; }
   .chipbtn { line-height: 0; align-self: center; }
@@ -416,9 +521,30 @@ const LEGEND: [string, string, string][] = [
   }
 
   document.addEventListener("click", (e) => {
-    const t = (e.target as HTMLElement).closest<HTMLElement>(".tag");
-    if (!t || !t.dataset.tag || (t as HTMLButtonElement).disabled) return;
-    applyFilter(active === t.dataset.tag ? null : t.dataset.tag);
+    const el = e.target as HTMLElement;
+    // tag click → filter (takes priority; never toggles the row)
+    const t = el.closest<HTMLElement>(".tag");
+    if (t && t.dataset.tag && !(t as HTMLButtonElement).disabled) {
+      applyFilter(active === t.dataset.tag ? null : t.dataset.tag);
+      return;
+    }
+    // otherwise, a click on a listed row header expands/collapses it
+    const header = el.closest<HTMLElement>(".row-header");
+    if (header) {
+      const row = header.closest<HTMLElement>(".row")!;
+      const open = row.classList.toggle("open");
+      header.setAttribute("aria-expanded", String(open));
+    }
+  });
+  // keyboard: Enter/Space toggles a focused row header
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const header = (e.target as HTMLElement).closest<HTMLElement>(".row-header");
+    if (!header) return;
+    e.preventDefault();
+    const row = header.closest<HTMLElement>(".row")!;
+    const open = row.classList.toggle("open");
+    header.setAttribute("aria-expanded", String(open));
   });
   document.getElementById("clear")!.addEventListener("click", () => applyFilter(null));
   if (location.hash) applyFilter(decodeURIComponent(location.hash.slice(1)));

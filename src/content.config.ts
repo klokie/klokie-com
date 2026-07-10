@@ -50,11 +50,14 @@ const music = defineCollection({
     start: z.number().optional(),
     end: z.number().optional(),
     role: z.string().optional(),
+    genre: z.string().optional(),
+    aka: z.string().optional(),
     summary: z.string().optional(),
     links: z.array(z.object({ label: z.string(), url: z.string().url() })).default([]),
     bandcampAlbums: z
       .array(z.object({ title: z.string(), id: z.string(), url: z.string().url() }))
       .default([]),
+    soundcloudPlaylist: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });
