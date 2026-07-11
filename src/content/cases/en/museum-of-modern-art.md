@@ -3,7 +3,7 @@ title: "Museum of Modern Art"
 date: "1998-10-01"
 endDate: "2000-04-01"
 location: "New York"
-categories: [art]
+categories: [art, fashion-art]
 role: "Senior Full-stack Engineer"
 summary: "Dynamic, browsable online showcase for the arts, including an engaging introduction to art for kids in a Java applet (design by OvenDigital)"
 image: "https://media.klokie.com/cases/museum-of-modern-art.gif?v=2"

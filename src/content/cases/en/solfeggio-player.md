@@ -2,7 +2,7 @@
 title: "Solfeggio Player"
 date: "2024-06-01"
 location: "Stockholm"
-categories: [music]
+categories: [music, gaming]
 role: "Creator"
 summary: "Web app that generates the solfeggio frequencies in the browser — pure Web Audio API, no samples."
 url: "https://solfeggio.klokie.com"

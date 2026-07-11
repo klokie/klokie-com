@@ -2,7 +2,7 @@
 title: "The Node — Stjärnkrock"
 date: "2023-09-11"
 location: "Stockholm"
-categories: [music, interactive-video-art, ai]
+categories: [music, interactive-video-art, ai, fashion-art]
 role: "Lead Architect"
 summary: "Realtime audio-reactive visuals on a large LED backdrop for six live artist-pair performances pairing classical and contemporary musicians."
 featured: true

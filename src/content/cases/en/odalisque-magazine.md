@@ -3,7 +3,7 @@ title: "Odalisque Magazine"
 date: "2015-01-01"
 endDate: "2021-02-10"
 location: "Stockholm"
-categories: [fashion, publishing]
+categories: [fashion, publishing, fashion-art]
 role: "Co-founder & CTO"
 summary: "Co-Founder and CTO of ODALISQUE Magazine, one of Sweden’s top fashion, arts & culture publications in print and web formats."
 image: "https://media.klokie.com/cases/odalisque-magazine.png?v=2"
