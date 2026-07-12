@@ -3,7 +3,7 @@ title: "Enliven"
 date: "2016-08-08"
 endDate: "2024-05-01"
 location: "Stockholm"
-categories: [publishing, e-commerce, ai, fashion-art]
+categories: [publishing, e-commerce, ai, fashion-art, apps]
 role: "Co-founder & CTO"
 summary: "Enliven was an AI-based media platform that helped professional creatives and premium personal brands design, distribute, and monetize their premium editorial content."
 featured: true
