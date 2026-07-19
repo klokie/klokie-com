@@ -3,8 +3,7 @@ title: "Online Guitar Tuner"
 date: "2026-07-19"
 ongoing: true
 location: "Stockholm"
-categories: [music, apps]
-role: "Design & build (solo, AI-assisted)"
+categories: [music, ai, apps]
 summary: "Free browser-based guitar tuner for absolute beginners — microphone in, live needle out, no app, no sign-up, audio never leaves the device."
 url: "https://tuner.klokie.com"
 featured: true
