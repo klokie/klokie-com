@@ -5,6 +5,9 @@ location: "Stockholm"
 categories: [music, interactive-video-art, ai, fashion-art]
 role: "Lead Architect"
 summary: "Realtime audio-reactive visuals on a large LED backdrop for six live artist-pair performances pairing classical and contemporary musicians."
+image: "https://media.klokie.com/cases/the-node-stjarnkrock.png?v=2"
+imageFit: "cover"
+imageAlt: "The Node — Stjärnkrock"
 featured: true
 draft: false
 generated: true

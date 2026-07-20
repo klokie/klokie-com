@@ -6,6 +6,9 @@ location: "New York, Paris"
 categories: [fashion, e-commerce, art, fashion-art]
 role: "Co-founder & CTO"
 summary: "Co-founder & CTO of the New York/Paris design studio serving media companies in publishing, music, film, and fashion — clients included MoMA, Virgin UK, and Source Records."
+image: "https://media.klokie.com/cases/surface-to-air.jpg?v=2"
+imageFit: "contain"
+imageAlt: "Surface to Air"
 featured: true
 draft: false
 generated: true
