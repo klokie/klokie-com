@@ -6,6 +6,8 @@ location: "Stockholm"
 categories: [music, ai, apps]
 summary: "Free browser-based guitar tuner for absolute beginners — microphone in, live needle out, no app, no sign-up, audio never leaves the device."
 url: "https://tuner.klokie.com"
+image: "https://media.klokie.com/cases/online-guitar-tuner.png"
+imageAlt: "The tuner mid-tune: E2 in tune, needle centered, low-E peg highlighted on the headstock diagram"
 featured: true
 draft: false
 ---
