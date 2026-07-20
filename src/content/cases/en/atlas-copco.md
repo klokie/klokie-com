@@ -7,7 +7,7 @@ categories: [intranet, community]
 role: "Senior Full-stack Engineer"
 summary: "In 2007, I developed a Facebook-like intranet for Atlas Copco using Drupal, enhancing internal communication and collaboration. The platform featured user profiles, a news feed, document sharing, group discussions, and event management, creating a connected and interactive work environment."
 image: "https://media.klokie.com/cases/atlas-copco.png?v=2"
-imageFit: "cover"
+imageFit: "contain"
 imageAlt: "Atlas Copco"
 featured: true
 draft: false
