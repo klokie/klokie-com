@@ -5,6 +5,9 @@ location: "Stockholm"
 categories: [health, ai, gaming, apps]
 role: "Developer"
 summary: "Assistive prototype that turns environmental sounds into haptic and visual cues in under half a second, for people with hearing loss."
+image: "https://media.klokie.com/cases/haptic-vision.png?v=2"
+imageFit: "cover"
+imageAlt: "Concept art: a VR headset and haptic vest linked to an audio waveform and ear icon"
 featured: false
 draft: false
 ---
