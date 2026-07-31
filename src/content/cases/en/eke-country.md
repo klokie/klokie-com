@@ -1,11 +1,13 @@
 ---
 title: "Eke Country (website)"
 date: "2026-07-31"
-location: "Eke, Gotland"
-categories: [music, cms]
+location: "Gotland"
+categories: [music, events, cms]
 role: "Design & build"
 summary: "Bilingual site for Eke Country — the Gotland live-music venue formerly known as Suder Country — built so the owners publish everything themselves."
 url: "https://www.ekecountry.se"
+image: "https://media.klokie.com/cases/eke-country.png?v=1"
+imageAlt: "Eke Country website"
 featured: false
 draft: false
 ---
