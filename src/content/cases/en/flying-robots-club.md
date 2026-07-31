@@ -3,7 +3,7 @@ title: "Flying Robots Club"
 date: "2019-09-24"
 endDate: "2020-02-23"
 location: "Stockholm"
-categories: [community]
+categories: [community, events]
 role: "Senior Full-stack Engineer / Co-Founder"
 summary: "Robot-building workshops that built creative confidence in teenage girls — Stockholm and Brazil, with the Swedish Embassy and KTH."
 image: "https://media.klokie.com/cases/flying-robots-club.jpg?v=2"

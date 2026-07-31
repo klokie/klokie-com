@@ -29,6 +29,10 @@ const CHIP: Record<string, string> = {
   apps: "#c94f92",
   cms: "var(--t-indigo)",
   publishing: "var(--t-red)",
+  events: "var(--t-orange)",
+  // Distinct from streaming's blue on purpose: `streaming` still exists on
+  // other entries, so sharing a colour would imply they're the same thing.
+  "film/video": "#5aa9a3",
 };
 const chipColor = (categories: string[]) => {
   for (const c of categories) if (CHIP[c]) return CHIP[c];

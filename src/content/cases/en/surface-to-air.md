@@ -3,7 +3,7 @@ title: "Surface to Air"
 date: "2000-04-01"
 endDate: "2008-07-01"
 location: "New York, Paris"
-categories: [fashion, e-commerce, art, fashion-art]
+categories: [fashion, e-commerce, art, fashion-art, events, film/video]
 role: "Co-founder & CTO"
 summary: "Co-founder & CTO of the New York/Paris design studio serving media companies in publishing, music, film, and fashion — clients included MoMA, Virgin UK, and Source Records."
 image: "https://media.klokie.com/cases/surface-to-air.jpg?v=2"
