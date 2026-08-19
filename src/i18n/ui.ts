@@ -39,6 +39,8 @@ export const ui = {
     "articles.metaDesc": "Articles and notes from 25+ years of web publishing.",
     "articles.empty": "More articles are on their way over from the archive.",
     "articles.back": "← All articles",
+    "articles.article": "article",
+    "articles.articles.short": "articles",
 
     "music.title": "Music",
     "music.metaDesc": "Bands and music projects, 1988 → today: Arbetarorkestern, Howler Monkey Gods, Moveable, and many other international music ensembles.",
@@ -87,6 +89,8 @@ export const ui = {
     "articles.metaDesc": "Artiklar och anteckningar från 25+ år av webbpublicering.",
     "articles.empty": "Fler artiklar är på väg över från arkivet.",
     "articles.back": "← Alla artiklar",
+    "articles.article": "artikel",
+    "articles.articles.short": "artiklar",
 
     "music.title": "Musik",
     "music.metaDesc": "Band och musikprojekt, 1988 → idag: Arbetarorkestern, Howler Monkey Gods, Moveable och många andra internationella musikensembler.",
