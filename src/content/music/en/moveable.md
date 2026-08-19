@@ -9,20 +9,20 @@ aka: "Previously The J. Edgars (1995–96), Merrick (1994–95), and Cornelius [
 summary: "Loud rock trio, Boston → New York City — abrasive yet melodic, filed somewhere near the Fall, Gang of Four, Fugazi, Slint, and the Jesus Lizard."
 links:
   - label: "Bandcamp"
-    url: "https://frontyardrecords.bandcamp.com"
+    url: "https://moveable.bandcamp.com"
 bandcampAlbums:
   - title: "Parlour Remixes (2020)"
     id: "2883752521"
-    url: "https://frontyardrecords.bandcamp.com/album/parlour-remixes"
+    url: "https://moveable.bandcamp.com/album/parlour-remixes"
   - title: "Parlour Demo (2000)"
     id: "3475598601"
-    url: "https://frontyardrecords.bandcamp.com/album/parlour-demo"
+    url: "https://moveable.bandcamp.com/album/parlour-demo"
   - title: "Live at the Choppin' Block (1998)"
     id: "3497703733"
-    url: "https://frontyardrecords.bandcamp.com/album/live-at-the-choppin-block"
+    url: "https://moveable.bandcamp.com/album/live-at-the-choppin-block"
   - title: "Moveable (1998)"
     id: "2522481905"
-    url: "https://frontyardrecords.bandcamp.com/album/moveable"
+    url: "https://moveable.bandcamp.com/album/moveable"
 draft: false
 ---
 
@@ -45,7 +45,7 @@ the Middle East, the Rat, and most respectable (and otherwise) rooms in the
 Northeast.
 
 The catalog is on
-[Bandcamp](https://frontyardrecords.bandcamp.com), reissued on the band's own
+[Bandcamp](https://moveable.bandcamp.com), reissued on the band's own
 Front Yard Records: the 1998 CD, the full live set from the Choppin' Block
 (June 12, 1998), the 2000 Parlour demo, and four 2020 remixes made from the
 original multitracks.

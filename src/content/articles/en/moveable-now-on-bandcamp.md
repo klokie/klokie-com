@@ -12,7 +12,7 @@ between Fugazi, Slint, Gang of Four and the Jesus Lizard, or as we put it at the
 time: "dynamic, between really loud and sort of loud."
 
 The recordings have been on hard drives and in boxes ever since. They're now on
-[Bandcamp](https://frontyardrecords.bandcamp.com), reissued on our own label,
+[Bandcamp](https://moveable.bandcamp.com), reissued on our own label,
 Front Yard Records.
 
 ## What's there
@@ -46,5 +46,8 @@ It also gets the record completely wrong — it calls the recording muddy and
 lo-fi, when those two tracks are the cleanest, best-engineered thing we ever
 did. It had read the word "snowstorm" in the credits and reasoned from there.
 
-Reported, and moved on. The real catalog is at
-[frontyardrecords.bandcamp.com](https://frontyardrecords.bandcamp.com).
+Reported it, and moved on — registered under Front Yard Records instead rather
+than wait on the outcome. A few weeks later Bandcamp took the spam page down
+for an Acceptable Use Policy violation, which freed up the real name. The
+catalog now lives at
+[moveable.bandcamp.com](https://moveable.bandcamp.com), where it belongs.
