@@ -161,7 +161,7 @@ const tagFor = (topic?: string) => topic?.toLowerCase();
   const list = document.querySelector<HTMLElement>(".list")!;
   let active: string | null = null;
 
-  function applyFilter(tag: string | null) {
+  function applyFilter(tag: string | null, push = true) {
     active = tag;
     let shown = 0;
     document.querySelectorAll<HTMLElement>("[data-entry]").forEach((e) => {
@@ -173,15 +173,15 @@ const tagFor = (topic?: string) => topic?.toLowerCase();
       .querySelectorAll<HTMLElement>(".tag")
       .forEach((t) => t.classList.toggle("on", !!tag && t.dataset.tag === tag));
     bar.classList.toggle("idle", !tag);
+    const url = tag ? "#" + encodeURIComponent(tag) : location.pathname;
     if (tag) {
       activeEl.textContent = tag;
       countEl.textContent = `${shown} ${
         shown === 1 ? list.dataset.wordOne : list.dataset.wordMany
       }`;
-      history.replaceState(null, "", "#" + encodeURIComponent(tag));
-    } else {
-      history.replaceState(null, "", location.pathname);
     }
+    if (push) history.pushState({ tag }, "", url);
+    else history.replaceState({ tag }, "", url);
   }
 
   document.addEventListener("click", (e) => {
@@ -192,5 +192,8 @@ const tagFor = (topic?: string) => topic?.toLowerCase();
     }
   });
   document.getElementById("clear")!.addEventListener("click", () => applyFilter(null));
-  if (location.hash) applyFilter(decodeURIComponent(location.hash.slice(1)));
+  window.addEventListener("popstate", () => {
+    applyFilter(location.hash ? decodeURIComponent(location.hash.slice(1)) : null, false);
+  });
+  if (location.hash) applyFilter(decodeURIComponent(location.hash.slice(1)), false);
 </script>

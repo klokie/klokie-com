@@ -266,7 +266,7 @@ const firstYear = Math.min(...all.map((e) => e.data.start ?? 9999));
   const ledger = document.querySelector<HTMLElement>(".ledger")!;
   let active: string | null = null;
 
-  function applyFilter(tag: string | null) {
+  function applyFilter(tag: string | null, push = true) {
     active = tag;
     let shown = 0;
     document.querySelectorAll<HTMLElement>("[data-entry]").forEach((e) => {
@@ -278,15 +278,15 @@ const firstYear = Math.min(...all.map((e) => e.data.start ?? 9999));
       .querySelectorAll<HTMLElement>(".tag")
       .forEach((t) => t.classList.toggle("on", !!tag && t.dataset.tag === tag));
     bar.classList.toggle("idle", !tag);
+    const url = tag ? "#" + encodeURIComponent(tag) : location.pathname;
     if (tag) {
       activeEl.textContent = tag;
       countEl.textContent = `${shown} ${
         shown === 1 ? ledger.dataset.wordOne : ledger.dataset.wordMany
       }`;
-      history.replaceState(null, "", "#" + encodeURIComponent(tag));
-    } else {
-      history.replaceState(null, "", location.pathname);
     }
+    if (push) history.pushState({ tag }, "", url);
+    else history.replaceState({ tag }, "", url);
   }
 
   document.addEventListener("click", (e) => {
@@ -313,5 +313,8 @@ const firstYear = Math.min(...all.map((e) => e.data.start ?? 9999));
     header.setAttribute("aria-expanded", String(open));
   });
   document.getElementById("clear")!.addEventListener("click", () => applyFilter(null));
-  if (location.hash) applyFilter(decodeURIComponent(location.hash.slice(1)));
+  window.addEventListener("popstate", () => {
+    applyFilter(location.hash ? decodeURIComponent(location.hash.slice(1)) : null, false);
+  });
+  if (location.hash) applyFilter(decodeURIComponent(location.hash.slice(1)), false);
 </script>
