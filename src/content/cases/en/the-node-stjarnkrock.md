@@ -15,8 +15,8 @@ generated: true
 
 Stjärnkrock ("When stars collide") paired six duos of musicians — each
 combining a classically trained instrumentalist with a contemporary (pop,
-rock, electronic) artist — for live 8–10 minute performances at Vinterviken,
-Stockholm.
+rock, electronic) artist — for live 8–10 minute performances at [the
+node](https://thenode.se/), Stockholm.
 
 For each performance we created an individual visual backdrop on a large LED
 screen behind the artists: realtime, audio-reactive, and composed for that
