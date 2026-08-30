@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import { localizedEntries, localizeUrl, dateLocale, type Locale } from "@/i18n";
 import { t } from "@/i18n/ui";
-import { siteConfig } from "@/site/config";
+import { personJsonLd } from "@/site/person";
 
 interface Props {
   lang: Locale;
@@ -25,20 +25,10 @@ const articles = localizedEntries(allArticles, lang)
   .slice(0, 4);
 const fmt = new Intl.DateTimeFormat(dateLocale[lang], { year: "numeric", month: "short" });
 
-const personJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Daniel Grossfeld",
-  alternateName: "Klokie",
-  jobTitle: "Senior Web Architect",
-  url: siteConfig.url,
-  image: new URL("/media/klokie.jpg", siteConfig.url).href,
-  address: { "@type": "PostalAddress", addressLocality: "Stockholm", addressCountry: "SE" },
-  sameAs: siteConfig.sameAs,
-};
+const jsonLd = personJsonLd();
 ---
 
-<SiteLayout lang={lang} jsonLd={personJsonLd} ogType="profile">
+<SiteLayout lang={lang} jsonLd={jsonLd} ogType="profile">
   <section class="hero">
     <div class="hero-inner container">
       <div class="hero-text">

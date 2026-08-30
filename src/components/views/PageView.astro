@@ -2,7 +2,8 @@
 import { render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import SiteLayout from "@/layouts/SiteLayout.astro";
-import { splitId, type Locale } from "@/i18n";
+import { splitId, localePaths, defaultLocale, type Locale } from "@/i18n";
+import { personJsonLd, CV_DETAILS } from "@/site/person";
 
 interface Props {
   lang: Locale;
@@ -11,6 +12,23 @@ interface Props {
 const { lang, entry } = Astro.props;
 const translated = splitId(entry.id).lang === lang;
 const { Content } = await render(entry);
+
+// Pages that are *about* Daniel carry Person schema; the CV adds the
+// employment/education detail that only belongs on a CV.
+const slug = entry.data.slug ?? splitId(entry.id).slug;
+const isCv = slug === "cv";
+// On an untranslated fallback the canonical points at the default-locale page,
+// so the schema must describe that page too — not the URL we happen to be on.
+const isFallback = lang !== defaultLocale && !translated;
+const schemaPath = isFallback ? localePaths(Astro.url.pathname)[defaultLocale] : Astro.url.pathname;
+const jsonLd =
+  isCv || slug === "about"
+    ? personJsonLd({
+        mainEntityOfPage: new URL(schemaPath, Astro.site ?? Astro.url).href,
+        inLanguage: isFallback ? defaultLocale : lang,
+        ...(isCv ? CV_DETAILS : {}),
+      })
+    : undefined;
 ---
 
 <SiteLayout
@@ -18,6 +36,8 @@ const { Content } = await render(entry);
   translated={translated}
   title={entry.data.title}
   description={entry.data.description}
+  ogType={isCv ? "profile" : "website"}
+  jsonLd={jsonLd}
 >
   <article class="container">
     <div class="prose">
