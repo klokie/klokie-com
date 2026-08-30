@@ -2,8 +2,15 @@ import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
 // entries live in per-locale subfolders (en/, sv/); ids are "<lang>/<slug>"
+//
+// Astro's default glob generateId returns frontmatter `slug` verbatim when it is
+// present, which collapses en/<slug> and sv/<slug> onto a single id — the locales
+// then clobber each other in the store and splitId() reports the wrong language.
+// Derive the id from the file path instead so the "<lang>/<slug>" contract above
+// actually holds, and keep `slug` for what it is for: naming the route.
+const localeId = ({ entry }: { entry: string }) => entry.replace(/\.[^./]+$/, "");
 const cases = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/cases" }),
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/cases", generateId: localeId }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date().optional(),
@@ -24,7 +31,7 @@ const cases = defineCollection({
 });
 
 const pages = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/pages" }),
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/pages", generateId: localeId }),
   schema: z.object({
     title: z.string(),
     slug: z.string().optional(),
@@ -34,7 +41,7 @@ const pages = defineCollection({
 });
 
 const articles = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/articles" }),
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/articles", generateId: localeId }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -45,7 +52,7 @@ const articles = defineCollection({
 });
 
 const music = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/music" }),
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/music", generateId: localeId }),
   schema: z.object({
     title: z.string(),
     start: z.number().optional(),
