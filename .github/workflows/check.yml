@@ -28,4 +28,8 @@ jobs:
 
       - run: pnpm build
         env:
-          PUBLIC_SITE_URL: ${{ vars.PUBLIC_SITE_URL || 'http://localhost:4321' }}
+          PUBLIC_SITE_URL: ${{ vars.PUBLIC_SITE_URL || 'https://www.klokie.com' }}
+
+      # After build: the suite asserts on dist/ (markdown twins, llms.txt,
+      # JSON-LD, trust anchors) as well as the worker's negotiation logic.
+      - run: pnpm test

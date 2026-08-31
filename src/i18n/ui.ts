@@ -9,6 +9,7 @@ export const ui = {
     "nav.music": "Music",
     "nav.about": "About",
     "nav.contact": "Contact",
+    "nav.privacy": "Privacy",
 
     "site.description":
       "Daniel “Klokie” Grossfeld — senior web architect and entrepreneur in Stockholm. Twenty-six years of shipped work: MoMA, Tiffany & Co., Rawkus, Scania, Werlabs.",
@@ -52,6 +53,9 @@ export const ui = {
     "notfound.body": "This page doesn't exist (or doesn't anymore). If you were looking for something specific, get in touch and I'll point you to it.",
     "notfound.contact": "→ Contact me",
     "notfound.home": "→ Home",
+    "notfound.work": "→ Work",
+    "notfound.articles": "→ Articles",
+    "notfound.agents": "Agents: /llms.txt maps every page; /sitemap-index.xml lists every URL. Any page also answers Accept: text/markdown.",
   },
   sv: {
     "nav.work": "Arbete",
@@ -59,6 +63,7 @@ export const ui = {
     "nav.music": "Musik",
     "nav.about": "Om",
     "nav.contact": "Kontakt",
+    "nav.privacy": "Integritet",
 
     "site.description":
       "Daniel “Klokie” Grossfeld — senior webbarkitekt och entreprenör i Stockholm. Tjugosex år av levererat arbete: MoMA, Tiffany & Co., Rawkus, Scania, Werlabs.",
@@ -102,6 +107,9 @@ export const ui = {
     "notfound.body": "Den här sidan finns inte (eller inte längre). Letade du efter något särskilt? Hör av dig så pekar jag dig rätt.",
     "notfound.contact": "→ Kontakta mig",
     "notfound.home": "→ Hem",
+    "notfound.work": "→ Arbete",
+    "notfound.articles": "→ Artiklar",
+    "notfound.agents": "Agenter: /llms.txt kartlägger alla sidor, /sitemap-index.xml listar alla URL:er. Alla sidor svarar även på Accept: text/markdown.",
   },
 } as const;
 

@@ -31,6 +31,7 @@ pnpm dev
 ```
 
 For live editing of vault content, symlink:
+
 ```bash
 rm -r src/content/gigs src/content/news src/content/pages
 ln -s "<vault>/personal/<...>/PUBLIC/gigs"  src/content/gigs
@@ -52,3 +53,17 @@ src/content/
 Co-locate images: `news/2026-04-29-jordsang/index.md` + `cover.jpg` in same folder.
 
 Set `published: false` to stage a post in the repo without showing it.
+
+## Agent readiness
+
+The site serves a Markdown representation of every page via content
+negotiation (`Accept: text/markdown`, `Vary: Accept`, `406` on unsatisfiable
+Accept — see [acceptmarkdown.com](https://acceptmarkdown.com)), publishes
+`/llms.txt` + `/llms-full.txt`, and answers unknown paths with a real `404`
+whose body is Markdown pointing back at the site map.
+
+```bash
+pnpm test                                    # unit + dist/ contract tests
+scripts/verify-agent-readiness.sh            # live check against production
+scripts/verify-agent-readiness.sh http://localhost:8787
+```

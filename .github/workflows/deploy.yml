@@ -34,6 +34,9 @@ jobs:
           PUBLIC_SENTRY_ENV: ${{ vars.PUBLIC_SENTRY_ENV }}
         run: pnpm build
 
+      - name: Test
+        run: pnpm test
+
       - name: Deploy to Cloudflare Workers
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

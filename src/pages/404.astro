@@ -10,9 +10,14 @@ const tr = t("en");
     <h1>{tr("notfound.title")}<em>.</em></h1>
     <p>{tr("notfound.body")}</p>
     <div class="links">
-      <a href="/contact/">{tr("notfound.contact")}</a>
       <a href="/">{tr("notfound.home")}</a>
+      <a href="/work/">{tr("notfound.work")}</a>
+      <a href="/articles/">{tr("notfound.articles")}</a>
+      <a href="/contact/">{tr("notfound.contact")}</a>
     </div>
+    <p class="agents mono">
+      {tr("notfound.agents")}
+    </p>
   </section>
 </SiteLayout>
 
@@ -34,6 +39,13 @@ const tr = t("en");
   }
   h1 em { font-style: normal; color: var(--primary); }
   p { color: var(--muted); margin-bottom: 24px; max-width: 52ch; line-height: 1.6; }
-  .links { display: flex; gap: 28px; }
+  .links { display: flex; gap: 28px; flex-wrap: wrap; }
+  .agents {
+    margin-top: 28px;
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: var(--dim, var(--muted));
+    max-width: 60ch;
+  }
   .links a { font-size: 0.95rem; }
 </style>

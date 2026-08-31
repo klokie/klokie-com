@@ -1,7 +1,7 @@
 {
   "name": "klokie-com",
   "version": "0.1.0",
-  "description": "klokie.com — personal site of Daniel Klokie Grossfeld (Astro, vault-driven content).",
+  "description": "klokie.com \u2014 personal site of Daniel Klokie Grossfeld (Astro, vault-driven content).",
   "type": "module",
   "private": true,
   "packageManager": "pnpm@10.10.0",
@@ -10,7 +10,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "astro check"
+    "check": "astro check",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -24,6 +26,7 @@
   "devDependencies": {
     "@types/node": "^22.10.0",
     "sharp": "^0.35.3",
+    "vitest": "^4.1.11",
     "wrangler": "^4.108.0"
   }
 }
