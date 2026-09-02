@@ -13,7 +13,7 @@ remember which machine, or why. And the `.env` file that makes any of it
 actually run isn't in git at all, because it never should have been.
 
 [Repoman](https://github.com/klokie/repoman) is a single Go binary that keeps
-track of all that. It's named after the 1984 film, and the joke stopped being
+track of all that. It's named after the 1984 punk/cult classic film by Alex Cox, and the joke stopped being
 a joke around the time it started repossessing things I'd forgotten I owned.
 
 ## The manifest
