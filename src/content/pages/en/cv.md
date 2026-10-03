@@ -48,6 +48,9 @@ environment.
 - Introduced AI-assisted development to the team (editor tooling, shared
   rules, reusable skills) and onboarded a new developer through review and
   context transfer.
+- Built a dynamic graphing library on Airbnb's Visx that renders longitudinal
+  medical data over time, used across consumer and B2B surfaces — large result
+  sets, interactive time-series, and a component API other engineers build on.
 
 ### Scania — Elain Advanced — Product Owner / Senior Back-end
 
@@ -63,10 +66,12 @@ _Stockholm, 2020–2022_
 
 ### Enliven — Co-founder & CTO
 
-_Stockholm, 2016–2024_ — AI-based media platform for professional creatives
-and premium personal brands.
+_Stockholm, 2017–2024_ — AI-based media platform for professional creatives and
+premium personal brands. Built the whole stack myself, including a design system
+that composed magazine-quality layouts dynamically using computer vision — years
+before the current AI boom.
 
-### Odalisque Magazine — Co-founder & CTO
+### Odalisque Magazine — Co-founder & Technical Director
 
 One of Sweden's leading fashion, arts and culture publications, in print and
 on the web.

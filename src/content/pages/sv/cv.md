@@ -45,6 +45,10 @@ svensk miljö.
 - Bar kontinuiteten i legacy-plattformen genom flera avhopp — identitet och
   användarprofil, provsvar, vårdgivarappen — inklusive en överlämning till
   extern partner.
+- Byggde ett dynamiskt grafbibliotek ovanpå Airbnb:s Visx som visualiserar
+  medicinska data över tid, använt både mot konsument och B2B — stora
+  datamängder, interaktiva tidsserier och ett komponent-API som andra utvecklare
+  bygger vidare på.
 - Introducerade AI-stött utvecklingsarbete i teamet (editorverktyg,
   gemensamma regler, återanvändbara skills) och onboardade en ny utvecklare
   genom kodgranskning och kontextöverföring.
@@ -63,10 +67,10 @@ _Stockholm, 2020–2022_
 
 ### Enliven — Medgrundare & CTO
 
-_Stockholm, 2016–2024_ — AI-baserad medieplattform för professionella
+_Stockholm, 2017–2024_ — AI-baserad medieplattform för professionella
 kreatörer och personliga premiumvarumärken.
 
-### Odalisque Magazine — Medgrundare & CTO
+### Odalisque Magazine — Medgrundare & teknisk chef
 
 En av Sveriges ledande publikationer inom mode, konst och kultur, i print och
 på webben.
