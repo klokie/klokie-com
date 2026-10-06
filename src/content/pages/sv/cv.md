@@ -68,13 +68,13 @@ _Stockholm, 2023–2024_ — dataplattform för en global lastbilstillverkare.
 Serverlösa ingest-API:er i **Python**, SQL-migrering och modellering på GCP och
 AWS, med ansvar för både backlog och backend.
 
-### TV4 / Telia / C More — Senior fullstack / Product Owner
+### TV4 / Telia / C More — Senior fullstackutvecklare
 
 _Stockholm, 2022–2023_ — streaming och mediedistribution i nationell skala, på
 webb och connected-TV. Redaktionella system och innehållsleverans under skarp
 trafik, inklusive PIN-autentisering och hantering av samtycke över domäner.
 
-### Sneakersnstuff — Senior fullstack / Engineering management
+### Sneakersnstuff — Senior fullstack / Tech lead
 
 _Stockholm, 2020–2022_ — ledde ett litet team som byggde **React Native**-appen
 (TypeScript, AWS, **Swift** för det nativa iOS-lagret) förbi **en miljon
