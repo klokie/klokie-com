@@ -32,6 +32,26 @@ export const siteConfig = {
   paths: {
     work: "/work",
   },
+  /**
+   * Homepage "Featured" list — explicit slugs, rendered in this order.
+   *
+   * This is curation, and it is deliberately separate from the `featured`
+   * frontmatter flag, which means only "this case gets a detail page at
+   * /work/<slug>/". Editing a case's flag must never silently change the
+   * homepage, and dropping a case from this list must never unpublish it.
+   *
+   * Order is intentional, not chronological: senior client work leads, side
+   * projects follow. A slug that no longer resolves is skipped.
+   */
+  featuredCases: [
+    "werlabs",
+    "sneakersnstuff",
+    "scania-elain-advanced",
+    "tv4-telia-cmore",
+    "eu-medication-access-layer",
+    "online-guitar-tuner",
+    "haptic-vision",
+  ],
 };
 
 export type SiteConfig = typeof siteConfig;

@@ -4,6 +4,7 @@ import SiteLayout from "@/layouts/SiteLayout.astro";
 import { localizedEntries, localizeUrl, dateLocale, type Locale } from "@/i18n";
 import { t } from "@/i18n/ui";
 import { personJsonLd } from "@/site/person";
+import { siteConfig } from "@/site/config";
 
 interface Props {
   lang: Locale;
@@ -11,13 +12,14 @@ interface Props {
 const { lang } = Astro.props;
 const tr = t(lang);
 
+// Curation comes from siteConfig.featuredCases (explicit order), NOT from the
+// `featured` flag or the date. The flag only governs whether a case has a
+// detail page, so adding one never rearranges the homepage.
 const allCases = await getCollection("cases", ({ data }) => data.featured && !data.draft);
-const featured = localizedEntries(allCases, lang)
-  .sort(
-    (a, b) =>
-      (b.entry.data.date?.getTime() ?? 0) - (a.entry.data.date?.getTime() ?? 0),
-  )
-  .slice(0, 6);
+const casesBySlug = new Map(localizedEntries(allCases, lang).map((e) => [e.slug, e]));
+const featured = siteConfig.featuredCases
+  .map((slug) => casesBySlug.get(slug))
+  .filter((e): e is NonNullable<typeof e> => e !== undefined);
 
 const allArticles = await getCollection("articles", ({ data }) => !data.draft);
 const articles = localizedEntries(allArticles, lang)
