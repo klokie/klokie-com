@@ -35,6 +35,7 @@ export const ui = {
     "work.back": "← All work",
     "work.visit": "VISIT ↗",
     "work.featured": "Featured",
+    "work.openSource": "Plus small open-source tools I maintain →",
 
     "articles.title": "Articles",
     "articles.metaDesc": "Articles and notes from 25+ years of web publishing.",
@@ -89,6 +90,7 @@ export const ui = {
     "work.back": "← Allt arbete",
     "work.visit": "BESÖK ↗",
     "work.featured": "Utvald",
+    "work.openSource": "Plus små verktyg med öppen källkod som jag underhåller →",
 
     "articles.title": "Artiklar",
     "articles.metaDesc": "Artiklar och anteckningar från 25+ år av webbpublicering.",
