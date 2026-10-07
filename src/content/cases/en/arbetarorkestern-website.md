@@ -8,7 +8,7 @@ summary: "Bilingual website for the Stockholm world-music ensemble Arbetarorkest
 url: "https://arbetarorkestern.klokie.com"
 image: "https://media.klokie.com/cases/arbetarorkestern.png?v=2"
 imageAlt: "Arbetarorkestern website"
-featured: false
+featured: true
 draft: false
 ---
 

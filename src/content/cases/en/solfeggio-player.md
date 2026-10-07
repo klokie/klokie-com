@@ -8,7 +8,7 @@ summary: "Web app that generates the solfeggio frequencies in the browser — pu
 url: "https://solfeggio.klokie.com"
 image: "https://media.klokie.com/cases/solfeggio-player.png?v=2"
 imageAlt: "Solfeggio Frequency Player"
-featured: false
+featured: true
 draft: false
 ---
 

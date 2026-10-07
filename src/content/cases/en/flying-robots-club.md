@@ -8,7 +8,7 @@ role: "Senior Full-stack Engineer / Co-Founder"
 summary: "Robot-building workshops that built creative confidence in teenage girls — Stockholm and Brazil, with the Swedish Embassy and KTH."
 image: "https://media.klokie.com/cases/flying-robots-club.jpg?v=2"
 imageAlt: "Flying Robots Club logo by Mathilda Ström"
-featured: false
+featured: true
 draft: false
 ---
 

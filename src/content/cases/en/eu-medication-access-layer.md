@@ -8,7 +8,7 @@ summary: "Service helping people in Sweden access already-prescribed medication 
 url: "https://www.receptionen.eu"
 image: "https://media.klokie.com/cases/eu-medication-access-layer.png?v=2"
 imageAlt: "EU Medication Access Layer (receptionen.eu)"
-featured: false
+featured: true
 draft: false
 ---
 
