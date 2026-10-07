@@ -48,4 +48,5 @@ favorites, not the whole story. See [things I've worked on](/work/).
 
 ---
 
+Some of what I've built with all this is [open source](/open-source/).
 Building something and want to compare notes? [Get in touch](/contact/).

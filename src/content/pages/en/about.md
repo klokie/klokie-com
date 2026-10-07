@@ -38,4 +38,5 @@ source.
 
 See [things I've worked on](/work/) for the full portfolio, my
 [CV](/cv/) for the formal version, [articles](/articles/) for the writing,
-[what I use](/uses/) to build — or just [get in touch](/contact/).
+[what I use](/uses/) to build, the [open-source tools](/open-source/) I
+maintain — or just [get in touch](/contact/).
