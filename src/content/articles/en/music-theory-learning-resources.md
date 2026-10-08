@@ -71,3 +71,22 @@ draft: false
 
 - **Tonegym** – Melody/interval games: [www.tonegym.co](https://www.tonegym.co/)
 - **Teoria** – Melodic Dictation (when ready): [www.teoria.com/en/exercises/md.php](https://www.teoria.com/en/exercises/md.php)
+
+## Guitar
+
+### Free Browser Practice
+
+- **FaChords Guitar** – Free, browser-based practice for chords, scales, the fretboard, ear training, and rhythm: [www.fachords.com](https://www.fachords.com/)
+
+### Ebooks
+
+FaChords also sells guitar ebooks that apply the theory above to the fretboard:
+
+- [**Chords Domination**](https://fachords.gumroad.com/l/tvXjF) – Play any chord anywhere on the neck
+- [**52 Chord Progressions**](https://fachords.gumroad.com/l/QrgVt) – Connect chords and write songs
+- [**Scales Over Chords**](https://fachords.gumroad.com/l/dCyxv) – Choose the right scale for each chord
+- [**Ebooks bundle**](https://fachords.gumroad.com/l/giubc) – All three at 20% off. Left-handed editions are also available.
+
+---
+
+_The FaChords ebook links are affiliate links: if you buy through them I get a commission, at no extra cost to you._
