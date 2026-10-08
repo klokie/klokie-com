@@ -17,11 +17,15 @@ A short, honest list of discounts and referral perks I've actually used — not 
 
 Tools I run klokie.com and side projects on, with referral/affiliate programs worth using if you're setting up something similar:
 
-- **Cloudflare** — DNS, email routing, and Workers hosting for every site on this domain. <!-- TODO: add referral/affiliate link if I have one for Cloudflare. -->
-- **Google Workspace** — <!-- TODO: add referral link (see Todoist: "set up Google Workspace Referral Program", refergoogleworkspace.withgoogle.com — link was truncated in my notes, needs the full URL). -->
-- **Oderland** — <!-- TODO: add referral/affiliate link for Oderland (Swedish hosting). -->
-- **Notion** — has an affiliate program I looked into. <!-- TODO: add personal affiliate link once set up (see Todoist: "set up Notion Affiliate Program"). -->
+<!-- Link the plain product homepage. The site's affiliate registry
+     (@klokie/theme/affiliates) swaps in the referral code at build time once a
+     program is active — never paste a referral URL here by hand. -->
+
+- **[Cloudflare](https://www.cloudflare.com/)** — DNS, email routing, and Workers hosting for every site on this domain.
+- **[Google Workspace](https://workspace.google.com/)** — mail, calendar, and docs on my own domain. <!-- TODO: one-line why. -->
+- **[Oderland](https://www.oderland.se/)** — Swedish hosting. <!-- TODO: one-line why. -->
+- **[Notion](https://www.notion.com/)** — <!-- TODO: one-line why. -->
 
 ---
 
-_This post is a draft — several links above are placeholders until I track down the exact program pages and my referral codes. Ping me if you know of a discount that should be here._
+_Some links above are referral or affiliate links: if you sign up through them I may get a small credit, at no cost to you. I only list things I actually use. Ping me if you know of a discount that should be here._
