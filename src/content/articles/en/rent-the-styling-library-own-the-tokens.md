@@ -108,7 +108,7 @@ Not because it's bad — it's good — but because adding it to a codebase with 
 existing styling idiom means maintaining two, which adds a divergence instead
 of closing one.
 
-**[react-strict-dom](https://facebook.github.io/react-strict-dom/)** is the one
+**[react-strict-dom](https://react.github.io/react-strict-dom/)** is the one
 I'd watch rather than build on. StyleX underneath, used in production at Meta,
 and both Meta and Expo treat its syntax as the intended path for new universal
 apps — strategically it's where this whole problem is heading. But the API is
