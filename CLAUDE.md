@@ -1,5 +1,12 @@
 # CLAUDE.md — klokie.com
 
+**Affiliate links:** outbound product links are plain URLs. Codes are added
+at build time from the shared registry in `@klokie/theme/affiliates`
+(`klokie-theme/src/affiliates/programs.ts`). Never hand-paste referral URLs.
+`/go/<id>` (in `src/worker.js`) serves the same registry for links used
+outside the site. To change a code, edit the theme, then run
+`pnpm update @klokie/theme` here.
+
 Always read `DESIGN.md` before making any visual or UI decision. All font
 choices, colors, spacing, layout, and aesthetic direction are defined there.
 Do not deviate without explicit user approval. In QA mode, flag any code
