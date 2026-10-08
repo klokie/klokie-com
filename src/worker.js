@@ -1,5 +1,5 @@
 /**
- * klokie.com edge worker. Two jobs:
+ * klokie.com edge worker. Three jobs:
  *
  * 1. Canonical host — every non-www host (apex, workers.dev) 301s to
  *    www.klokie.com preserving path + query.
@@ -11,9 +11,15 @@
  *    `Link: rel="alternate"`, and returns `406` when the client rejects
  *    everything we can produce.
  *
+ * 3. Affiliate go-links — `/go/<id>` 302s to the referral URL from the
+ *    registry in `@klokie/theme/affiliates` (the homepage while a program is
+ *    pending). 302, not 301: the target changes when a code goes live.
+ *
  * Misses return a real 404 either way — Markdown when the client didn't ask
  * for HTML, so an agent gets a recoverable body instead of a page of chrome.
  */
+
+import { goLink } from "@klokie/theme/affiliates";
 
 const CANONICAL_HOST = "www.klokie.com";
 const HTML = "text/html";
@@ -171,6 +177,15 @@ export default {
     if (url.hostname !== CANONICAL_HOST && !url.hostname.startsWith("localhost")) {
       url.hostname = CANONICAL_HOST;
       return Response.redirect(url.toString(), 301);
+    }
+
+    const go = url.pathname.match(/^\/go\/([a-z0-9-]+)\/?$/);
+    const goTarget = go && goLink(go[1]);
+    if (goTarget) {
+      return new Response(null, {
+        status: 302,
+        headers: { Location: goTarget, "Cache-Control": "no-store", "X-Robots-Tag": "noindex" },
+      });
     }
 
     const accept = request.headers.get("accept");

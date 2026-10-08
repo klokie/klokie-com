@@ -6,6 +6,7 @@
  * site is no longer acceptmarkdown-compliant.
  */
 import { describe, expect, it } from "vitest";
+import { goLink } from "@klokie/theme/affiliates";
 import worker, {
   appendVary,
   asksForHtml,
@@ -147,6 +148,21 @@ describe("worker.fetch — canonical host", () => {
     );
     expect(res.status).toBe(301);
     expect(res.headers.get("location")).toBe("https://www.klokie.com/work/?x=1");
+  });
+});
+
+describe("worker.fetch — affiliate go-links", () => {
+  it("302s a known program to its registry target, uncached and unindexed", async () => {
+    const res = await get("/go/notion");
+    expect(res.status).toBe(302);
+    expect(res.headers.get("location")).toBe(goLink("notion"));
+    expect(res.headers.get("cache-control")).toBe("no-store");
+    expect(res.headers.get("x-robots-tag")).toBe("noindex");
+  });
+
+  it("404s an unknown program", async () => {
+    const res = await get("/go/not-a-program", { Accept: "text/html" });
+    expect(res.status).toBe(404);
   });
 });
 
