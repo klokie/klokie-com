@@ -22,7 +22,7 @@ importers:
         version: 3.7.2
       '@klokie/theme':
         specifier: github:klokie/klokie-theme
-        version: https://codeload.github.com/klokie/klokie-theme/tar.gz/f1f5d83fe52b06d1af1c16bb42069c1567c9b75c(astro@5.18.1(@types/node@22.19.17)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3))
+        version: https://codeload.github.com/klokie/klokie-theme/tar.gz/f4a934efaa03762b21f88cab7d66088bc3f6c7ac(astro@5.18.1(@types/node@22.19.17)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3))
       astro:
         specifier: ^5.0.0
         version: 5.18.1(@types/node@22.19.17)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3)
@@ -947,8 +947,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@klokie/theme@https://codeload.github.com/klokie/klokie-theme/tar.gz/f1f5d83fe52b06d1af1c16bb42069c1567c9b75c':
-    resolution: {tarball: https://codeload.github.com/klokie/klokie-theme/tar.gz/f1f5d83fe52b06d1af1c16bb42069c1567c9b75c}
+  '@klokie/theme@https://codeload.github.com/klokie/klokie-theme/tar.gz/f4a934efaa03762b21f88cab7d66088bc3f6c7ac':
+    resolution: {tarball: https://codeload.github.com/klokie/klokie-theme/tar.gz/f4a934efaa03762b21f88cab7d66088bc3f6c7ac}
     version: 0.5.0
     peerDependencies:
       astro: ^5.0.0
@@ -3376,7 +3376,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@klokie/theme@https://codeload.github.com/klokie/klokie-theme/tar.gz/f1f5d83fe52b06d1af1c16bb42069c1567c9b75c(astro@5.18.1(@types/node@22.19.17)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3))':
+  '@klokie/theme@https://codeload.github.com/klokie/klokie-theme/tar.gz/f4a934efaa03762b21f88cab7d66088bc3f6c7ac(astro@5.18.1(@types/node@22.19.17)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3))':
     dependencies:
       astro: 5.18.1(@types/node@22.19.17)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3)
 
