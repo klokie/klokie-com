@@ -49,7 +49,8 @@ Bass and guitar are what I play most; see [things I've played on](/music/).
 
 - **Gibson ES-335** (red, Bigsby), a 1967. Current cousin:
   [ES-335 Figured 60s Cherry](https://www.thomannmusic.com/en-se/gibson_es_335_figured_60s_cherry.htm).
-- **Gibson S-1** (~1976), pickups swapped for Seymour Duncans.
+- **Gibson S-1** (~1976), pickups swapped for Seymour Duncans, something like the
+  [Cool Rails set](https://www.thomannmusic.com/en-se/seymour_duncan_cool_rails_pickup_set_black.htm).
 - **Fender Stratocaster**, 1970s, cream. Something like the
   [Fender Standard Strat](https://www.thomannmusic.com/en-se/fender_standard_strat_mn_wpg_owt.htm).
 - **Martin 000-16SGT Auditorium**, 2001, bought from a shop in Brooklyn.
