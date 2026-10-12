@@ -47,36 +47,53 @@ Bass and guitar are what I play most; see [things I've played on](/music/).
 
 ### Guitars and bass
 
-- **Gibson ES-335** (red, Bigsby) — the good one.
+- **Gibson ES-335** (red, Bigsby), a 1967. Current cousin:
+  [ES-335 Figured 60s Cherry](https://www.thomannmusic.com/en-se/gibson_es_335_figured_60s_cherry.htm).
 - **Gibson S-1** (~1976), pickups swapped for Seymour Duncans.
-- **Fender Stratocaster**, 1970s, cream.
-- **Martin acoustic**, 2001, bought from a shop in Brooklyn.
-- A nylon-string classical for quiet evenings.
+- **Fender Stratocaster**, 1970s, cream. Something like the
+  [Fender Standard Strat](https://www.thomannmusic.com/en-se/fender_standard_strat_mn_wpg_owt.htm).
+- **Martin 000-16SGT Auditorium**, 2001, bought from a shop in Brooklyn.
+- A nylon-string classical.
 
 ### Amps
 
-- **Fender Twin Reverb** — clean headroom for days.
-- **Markbass Little Mark II** head into an **EBS NeoLine 212** cabinet.
+- **Fender Twin Reverb**, like the
+  [Fender 65 Twin Reverb](https://www.thomannmusic.com/en-se/fender_65_twinreverb.htm).
+- **Markbass Little Mark II** head, like the
+  [Little Mark 250 Black Line](https://www.thomannmusic.com/en-se/markbass_little_mark_250_black_line.htm), into an **EBS NeoLine 212** cabinet.
 
 ### Pedals
 
-- **Effectrode Blackbird** (tube preamp), **EBS Multicomp** and **MultiDrive**,
-  **Tech 21 SansAmp**, **Strymon BlueSky**, **Boss TU-2** tuner,
-  **Boss LS-2** line selector, **Dunlop DVP4** volume pedal, and a pair of
-  Crybaby wahs.
-- **Pedaltrain Classic 2** board with a **Cioks DC7** power supply.
+- [EBS MultiComp Blue Label](https://www.thomannmusic.com/en-se/ebs_multicomp_blue_label.htm) and an EBS MultiDrive.
+- [Tech 21 SansAmp Classic](https://www.thomannmusic.com/en-se/tech_21_sansamp_classic_526531.htm).
+- [Strymon BigSky](https://www.thomannmusic.com/en-se/strymon_big_sky.htm) for reverb.
+- **Effectrode Blackbird** tube preamp.
+- Tuner: a Boss TU-2, now succeeded by the [Boss TU-3](https://www.thomannmusic.com/en-se/boss_tu3.htm).
+- [Boss LS-2 Line Selector](https://www.thomannmusic.com/en-se/boss_ls2_line_selector.htm).
+- [Dunlop Volume X Mini DVP4](https://www.thomannmusic.com/en-se/dunlop_volume_x_mini_pedal.htm) and a pair of
+  [Dunlop Cry Baby GCB95](https://www.thomannmusic.com/en-se/dunlop_cry_baby_gcb95.htm) wahs.
+- Board: I sold my Pedaltrain Classic 2 and would reach for the
+  [Pedaltrain Nano+](https://www.thomannmusic.com/en-se/pedaltrain_nano.htm) now, powered by a
+  [Cioks DC7](https://www.thomannmusic.com/en-se/cioks_dc7_v2.htm).
 
 ### Keys, synths, and controllers
 
-- **Native Instruments Komplete Kontrol S49 MK2** and **Ableton Push 2**.
-- **Make Noise 0-Coast** and **Teenage Engineering OP-1**.
+- **Native Instruments Komplete Kontrol S49 MK2**; the current one is the
+  [Kontrol S49 MK3](https://www.thomannmusic.com/en-se/native_instruments_komplete_kontrol_s49_mk3.htm).
+- **Ableton Push 2**, which I still love (Push 3 is the tempting upgrade), kept
+  safe under a [Decksaver](https://www.thomannmusic.com/en-se/decksaver_ableton_push_2.htm).
+- [Make Noise 0-Coast](https://www.thomannmusic.com/en-se/make_noise_0_coast.htm).
+- **Teenage Engineering OP-1**. The original is out of stock; its successor is
+  the [OP-1 field](https://www.thomannmusic.com/en-se/teenage_engineering_op_1_field.htm).
 
 ### Recording
 
-- **Focusrite Scarlett 2i4** and **Apogee Jam** interfaces, **Orange Omec
-  Teleport** (an interface in pedal form), and a **Mackie ProFX8v2** mixer.
-- Mics: **[Shure SM58](https://www.thomann.de/gb/shure_sm58.htm)** and a
-  **Røde K2** valve condenser.
+- **Focusrite Scarlett 2i4** (1st gen); the current equivalent is the
+  [Scarlett Solo 4th Gen](https://www.thomannmusic.com/en-se/focusrite_scarlett_solo_4th_gen.htm).
+- [Apogee Jam X](https://www.thomannmusic.com/en-se/apogee_jam_x.htm) (I have the original Jam), an **Orange
+  Omec Teleport** (an interface in pedal form), and a **Mackie ProFX8v2** mixer.
+- Mics: **[Shure SM58](https://www.thomannmusic.com/en-se/shure_sm58.htm)** and a
+  [Røde K2](https://www.thomannmusic.com/en-se/rode_k2.htm) valve condenser.
 
 _Some links on this page are affiliate links; they cost you nothing and help
 pay for the site._
