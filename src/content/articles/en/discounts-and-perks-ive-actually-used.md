@@ -25,6 +25,7 @@ Tools I run klokie.com and side projects on, with referral/affiliate programs wo
 - **[Google Workspace](https://workspace.google.com/)** — mail, calendar, and docs on my own domain. <!-- TODO: one-line why. -->
 - **[Oderland](https://www.oderland.se/)** — Swedish hosting. <!-- TODO: one-line why. -->
 - **[Notion](https://www.notion.com/)** — <!-- TODO: one-line why. -->
+- **[Lunch Money](https://lunchmoney.app/)** — the budgeting app I actually use day to day; the one place all my accounts land.
 - **[Lunch Flow](https://www.lunchflow.app/)** — syncs my Swedish bank accounts into Lunch Money.
 
 ---
