@@ -22,7 +22,7 @@ Tools I run klokie.com and side projects on, with referral/affiliate programs wo
      program is active — never paste a referral URL here by hand. -->
 
 - **[Cloudflare](https://www.cloudflare.com/)** — DNS, email routing, and Workers hosting for every site on this domain.
-- **[Google Workspace](https://workspace.google.com/)** — mail, calendar, and docs on my own domain. <!-- TODO: one-line why. -->
+- **[Google Workspace](https://workspace.google.com/)** — mail, calendar, and docs on my own domain since the start; still the simplest way to run a real `@yourdomain.com` inbox without babysitting a mail server yourself.
 - **[Oderland](https://www.oderland.se/)** — Nordic web hosting, and specifically the best managed WordPress and Drupal hosting I've found in Sweden — that combination is surprisingly hard to get right. I've run sites on Loopia, Websupport.se, and Hetzner; Oderland beats all of them by a mile. Also the easiest place to register a **.se domain** (I still use [Namecheap](https://www.namecheap.com/) for everything else).
 - **[Notion](https://www.notion.com/)** — still the best tool I've found for team collaboration and shared docs; nothing else gets the whole team actually using it.
 - **[Lunch Money](https://lunchmoney.app/)** — the budgeting app I actually use day to day; the one place all my accounts land.
