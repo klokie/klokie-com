@@ -11,7 +11,6 @@ A short, honest list of discounts and referral perks I've actually used — not 
 ## Grocery & everyday
 
 - **ICA → [destinationgotland.se](https://www.destinationgotland.se)**: ICA members get a discount on Gotland ferry crossings through Destination Gotland. Worth checking before you book if you're an ICA cardholder heading to Gotland.
-- **Coop**: <!-- TODO: fill in the specific Coop partner discount — I noted this existed but haven't recovered which one (medlemsrabatt program / partner) yet. -->
 
 ## Web & productivity tools
 
