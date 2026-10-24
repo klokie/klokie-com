@@ -3,7 +3,7 @@
 Source of truth for the klokie.com rewrite. At M2, copy this file to the
 `klokie/klokie-com` repo root and add a CLAUDE.md rule: "read DESIGN.md before
 any visual/UI decision." Base system: the existing **Klokie Design System**
-(`~/src/claude-design-Klokie Design System/colors_and_type.css`) — this doc
+(`~/src/klokie-design-system/colors_and_type.css`) — this doc
 adopts it and adds the portfolio-site extensions. Live preview:
 `assets/20260708/design-preview-ledger.html` (approved 2026-07-08).
 
